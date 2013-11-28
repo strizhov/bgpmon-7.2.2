@@ -1,0 +1,2982 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!-- This template is for creating an Internet Draft using xml2rfc,
+     which is available here: http://xml.resource.org. -->
+<!DOCTYPE rfc SYSTEM "http://xml.resource.org/authoring/rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+     There has to be one entity for each item to be referenced. 
+     An alternate method (rfc include) is described in the references. -->
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
+<!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
+<!ENTITY RFC2918 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2918.xml">
+<!ENTITY RFC1997 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1997.xml">
+<!ENTITY RFC4893 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4893.xml">
+<!ENTITY RFC5226 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5226.xml">
+<!ENTITY I-D.ietf-grow-mrt SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-grow-mrt-08.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs), 
+     please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
+     (Here they are set differently than their defaults in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="5"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space 
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?>
+<!-- keep one blank line between list items -->
+<!-- end of list of popular I-D processing instructions -->
+<rfc category="info" docName="draft-cheng-grow-bgp-xml-00" ipr="trust200811">
+  <!-- category values: std, bcp, info, exp, and historic
+     ipr values: full3667, noModification3667, noDerivatives3667
+     you can add the attributes updates="NNNN" and obsoletes="NNNN" 
+     they will automatically be output with "(if approved)" -->
+
+  <!-- ***** FRONT MATTER ***** -->
+
+  <front>
+    <!-- The abbreviated title is used in the page header - it is only necessary if the 
+         full title is longer than 39 characters -->
+
+    <title abbrev="BGP in XML">BGP routing information in XML format</title>
+
+    <!-- add 'role="editor"' below for the editors if appropriate -->
+
+    <!-- Another author who claims to be an editor -->
+
+    <author fullname="Peichun Cheng" initials="P" role="editor"
+            surname="Cheng">
+      <organization>UCLA IRL</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <city>Los Angeles</city>
+
+          <region>CA</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <facsimile></facsimile>
+
+        <email>pccheng@cs.ucla.edu</email>
+
+        <uri></uri>
+      </address>
+    </author>
+
+    <author fullname="He Yan" initials="H" role="editor" surname="Yan">
+      <organization>CSU-Netsec Group</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <city>Fort Collins</city>
+
+          <region>CO</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <facsimile></facsimile>
+
+        <email>yanhe@cs.colostate.edu</email>
+
+        <uri></uri>
+      </address>
+    </author>
+
+    <author fullname="Kevin Burnett" initials="K" role="editor"
+            surname="Burnett">
+      <organization>CSU-Netsec Group</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <city>Fort Collins</city>
+
+          <region>CO</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <facsimile></facsimile>
+
+        <email>burnet@cs.colostate.edu</email>
+
+        <uri></uri>
+      </address>
+    </author>
+
+    <author fullname="Daniel F. Massey" initials="D.F." role="editor"
+            surname="Massey">
+      <organization>CSU-Netsec Group</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <!-- Reorder these if your country does things differently -->
+
+          <city>Fort Collins</city>
+
+          <region>CO</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <email>massey@cs.colostate.edu</email>
+
+        <!-- uri and facsimile elements may also be added -->
+      </address>
+    </author>
+
+    <author fullname="Lixia Zhang" initials="L" role="editor" surname="Zhang">
+      <organization>UCLA IRL</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <city>Los Angeles</city>
+
+          <region>CA</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <facsimile></facsimile>
+
+        <email>lixia@cs.ucla.edu</email>
+
+        <uri></uri>
+      </address>
+    </author>
+
+    <date day="15" month="Feb" year="2009" />
+
+    <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
+         in the current day for you. If only the current year is specified, xml2rfc will fill 
+     in the current day and month for you. If the year is not the current one, it is 
+     necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the 
+     purpose of calculating the expiry date).  With drafts it is normally sufficient to 
+     specify just the year. -->
+
+    <!-- Meta-data Declarations -->
+
+    <area>General</area>
+
+    <workgroup>IETF</workgroup>
+
+    <!-- WG name at the upperleft corner of the doc,
+         IETF is fine for individual submissions.  
+     If this element is not present, the default is "Network Working Group",
+         which is used by the RFC Editor as a nod to the history of the IETF. -->
+
+    <keyword>BGP routing information, XML,</keyword>
+
+    <!-- Keywords will be incorporated into HTML output
+         files in a meta tag but they have no effect on text or nroff
+         output. If you submit your draft to the RFC Editor, the
+         keywords will be used for the search engine. -->
+
+    <abstract>
+      <t>This document describes the XML format for BGP routing information
+      (XFB). It can be used to describe both BGP messages and BGP control
+      information. Compared with MRT, XFB is more extensible, human and
+      machine-readable and can serve as a common interface for a variety of
+      tools.</t>
+    </abstract>
+
+    <note title="Requirements Language">
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+      "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+      document are to be interpreted as described in <xref
+      target="RFC2119">RFC 2119</xref>.</t>
+    </note>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+      <t>BGP routing information is an essential resource for both researchers
+      and operation communities in Internet routing. In order to facilitate
+      the collection of BGP data from multiple sources and the usage of the
+      collected data by multiple parties, it is important to define a standard
+      format to encapsulate, export, and archive it. A well designed format
+      should have the following nice properties <list style="symbols">
+          <t>Human and machine-readable</t>
+
+          <t>Easily accessible</t>
+
+          <t>Suitable for further processing by existing tools</t>
+
+          <t>Easy to add user annotations</t>
+
+          <t>Easy to reconstuct raw BGP messages / ability to replay into
+          router</t>
+
+          <t>Record full control information</t>
+
+          <t>Support BGP extensions</t>
+        </list></t>
+
+      <t>In this document, we describe XFB, a XML-based format for BGP routing
+      information, which is designed to meet these requirements. XML
+      (eXensible Markup Language) is a general-purpose markup language; its
+      primary purpose is to facilitate the message exchange across different
+      information systems, particularly via the Internet. Using XML as the
+      base for our XFB markup provides the following advantages:</t>
+
+      <t><list style="symbols">
+          <t>XFB is human and machine-readable. By using CSS or XSL, XFB can
+          be easily displayed on websites. Because XFB is based on XML which
+          is a common interface to many applications, XFB can be processed by
+          a variety of existing tools.</t>
+
+          <t>XFB can easily be extended with additional information based on
+          the raw BGP routing information. The BGP data is simply annotated
+          with additional attributes and/or elements; programs which are not
+          looking for this new information will simply ignore it. This allows
+          us to easily modify XFB in general (or particular BGPmons) to allow
+          for newly required information. We include guidelines for adding new
+          standard elements in each section.</t>
+
+          <t>XFB messages can be used to reconstruct the raw BGP messages, if
+          needed.</t>
+        </list></t>
+
+      <t>Though XFB pays a storage cost since a compact binary message is
+      unpacked into ASCII text together with additional tags, our experiments
+      shows that by using the default compression parameters for bzip2, we can
+      still store XFB data efficiently. For details, please refer to the
+      section of <xref target="app-additional">storage size
+      comparison</xref>.</t>
+
+      <t>In addition to XFB, we will briefly describe BGPmon (BGP Monitoring
+      Service), an implementation of a service to collect BGP data and make it
+      available in XFB format. Currently there are two types of BGP routing
+      information encoded in XFB: BGP messages which come "over the wire" and
+      may or may not be tagged with additional "helper" information, and BGP
+      control/status information that originates from the BGPmon itself.</t>
+    </section>
+
+    <section title="Terminology">
+      <section title="XML Notations">
+        <t>The syntax of XFB, being an extension of XML, is very simple. There
+        are only three terms throughout the XFB file:<list style="symbols">
+            <t>An "element" refers to a start tag, an end tag, and all the
+            characters in between, e.g., "&lt;example&gt;text and/or nested
+            elements&lt;/example&gt;".</t>
+
+            <t>An "empty element" combines the start tag and the end tag,
+            e.g., "&lt;empty/&gt;".</t>
+
+            <t>An "attribute" is part of an element. If present, they occur in
+            the start tag, e.g., "&lt;example name='value'&gt;". Of course,
+            they can also appear in empty elements, e.g., "&lt;empty
+            name='value'/&gt;".</t>
+          </list></t>
+      </section>
+    </section>
+
+    <section title="BGP Monitoring Service">
+      <t>BGP Monitoring System (BGPMon) is designed to monitor realtime BGP
+      updates and routing tables from peering BGP routers. It supports
+      distributed delployment to concurrently monitor many BGP routers. Most
+      importantly, BGPmon can produce XFB stream for realtime processing and
+      storage. The XFB format can accurately encode BGP data without losing
+      any information and can be easiliy extended to represent new BGP
+      features.</t>
+
+      <t>More specifically, BGPMon generates two types of messages: the BGP
+      messages come "over the wire" and the status messages which periodically
+      report the operational status of BGPMon itself. The status messages
+      carry useful information such as the peering relationship between BGPMon
+      and operational routers. Currently status messages convey three kind of
+      information: <list style="hanging">
+          <t hangText="BGPMON"><vspace blankLines="0" />BGPMon information,
+          currently only includes server up and down events.</t>
+
+          <t hangText="SESSION"><vspace blankLines="0" />Peering information,
+          including operation statusx such as uptime, the number of resets,
+          the number of messages received, the number of announce/withdrawl
+          received, etc.</t>
+
+          <t hangText="CHAIN"><vspace blankLines="0" />Chaining information.
+          Chaining is a unique feature by which BGPMon servers can be linked
+          together to achieve high scalability and performance. Chaining
+          information includes the operation status such as uptime, the number
+          of messages received, etc.</t>
+
+          <t hangText="QUEUE"><vspace blankLines="0" />Queue information,
+          indicating the BGPMon internal queue usage for administrative
+          purpose.</t>
+        </list>Please refer to <eref
+      target="http://bgpmon.netsec.colostate.edu/"> BGPMon</eref> for detail
+      information</t>
+
+      <t>In general, BGPmon faithfully provides bgp information to users. The
+      only additional processing in BGPmon is the labeling feature. By
+      comparing BGP updates received from the same peer, BGPmon is able to
+      annotate updates with labels, such as 'new announcement', 'duplicate
+      announcement', 'withdraw', 'duplicate withdraw', etc. These labels
+      together carry precious realtime infomation for BGP dynamics. </t>
+
+      <t>Moreover, please note that XFB is independent from BGPMon. Any other
+      application is free to read and produce, or even extend XFB messages. We
+      simpliy includes BGPMon here to demonstrate the ease of usage and
+      flexibility of the XFB format.</t>
+    </section>
+
+    <section title="Data Types">
+      <t>The purpose of XFB is to represent information relevent to BGP,
+      therefore it only supports limited number of data types. XFB uses
+      standard datatypes defined by W3C XML schema. Please refer to <eref
+      target="http://www.w3.org/TR/xmlschema-2/">XML Schema</eref> for detail
+      datatype definition.</t>
+
+      <t><list style="hanging">
+          <t hangText="INTEGER"><vspace blankLines="0" />A integer is
+          represented by the INTEGER data type. Integer data MUST be encoded
+          in Base 10.</t>
+
+          <t hangText="STRING"><vspace blankLines="0" />A single character is
+          represented by the CHARACTER data type. A character string is
+          represented by the STRING data type. Special characters must be
+          encoded using entity references.</t>
+
+          <t hangText="HEXBIN"><vspace blankLines="0" />A binary octet string
+          is represented by the HEXBIN data type. Specifically, each octet is
+          encoded by two hexadecimal digits.</t>
+
+          <t hangText="ENUM"><vspace blankLines="0" />A enumerated type is
+          represented by the ENUM data type, and consist of an ordered list of
+          acceptable values. Each value has a representative keyword</t>
+
+          <t hangText="DATETIME"><vspace blankLines="0" />A date-time string
+          is represented by the DATETIME data type. Each date-time string
+          identifies a particular instant in time; ranges are not
+          supported</t>
+        </list></t>
+    </section>
+
+    <section title="The XFB Data Model">
+      <t>In the following sections, the XFB format will be discussed in
+      detail.</t>
+
+      <section anchor="bgpmessage" title="BGP_MESSAGE">
+        <t>BGP_MESSAGE is the top level message class. Every routing
+        information is encoded in exactly one BGP_MESSAGE xml element.</t>
+
+        <t><figure alt="BGP_MESSAGE" anchor="figure-bgpmessage"
+            title="The root BGP_MESSAGE element">
+            <artwork><![CDATA[   +--------------------+
+   | BGP_MESSAGE        |
+   +--------------------+
+   | STRING xmlns       |
+   | STRING version     |<>----------[ TIME          ]
+   | INTEGER length     |<>--{0..1}--[ PEERING       ]
+   |                    |<>--{0..1}--[ ASCII_MSG     ]
+   |                    |<>--{0..1}--[ OCTET_MSG     ]
+   |                    |<>--{0..1}--[ STATUS_MSG    ]
+   +--------------------+]]></artwork>
+          </figure></t>
+
+        <t>The BGP_MESSAGE class contains the following element classes:</t>
+
+        <t><list style="hanging">
+            <t hangText="TIME"><vspace blankLines="0" />One. The time
+            associated with the BGP message</t>
+
+            <t hangText="PEERING"><vspace blankLines="0" />Zero or one. The
+            connection information of from which peer the message was received
+            over.</t>
+
+            <t hangText="ASCII_MSG"><vspace blankLines="0" />Zero or one. BGP
+            message encoded in ascii xml format.</t>
+
+            <t hangText="OCTET_MSG"><vspace blankLines="0" />Zero or one. BGP
+            message encoded in hexadecimal format. A BGP_MESSAGE message
+            SHOULD contain at least one of asciimsg and octests element,
+            except the status messages.</t>
+
+            <t hangText="STATUS_MSG"><vspace blankLines="0" />Zero or one.
+            Periodic status message in ascii xml format.Applications which
+            only care about BGP messages can safely ignore this element</t>
+          </list></t>
+
+        <t>The BGPData class has two attributes:</t>
+
+        <t><list style="hanging">
+            <t hangText="xmlns"><vspace blankLines="0" />Required. STRING. The
+            namespace of XFB specification. Required for validation.</t>
+
+            <t hangText="version"><vspace blankLines="0" />Required. STRING.
+            The XFB specification version number.</t>
+
+            <t hangText="length"><vspace blankLines="0" />Required. INTEGER.
+            The total length of the message in characters, including the
+            BGP_MESSAGE tag itself.</t>
+          </list></t>
+
+        <t anchor="xsd_BGP_MESSAGE"></t>
+      </section>
+
+      <section anchor="bgptime" title="TIME">
+        <t>Every BGP_MESSAGE MUST contain a child time element, indicating the
+        time when the BGP message has been received/generated. The time can be
+        represented in either or both of timestamp and human readable formats;
+        additional formats MAY be included as well.</t>
+
+        <t><figure alt="Time" anchor="figure-time" title="TIME Class">
+            <artwork><![CDATA[   +--------------------+
+   | TIME               |
+   +--------------------+
+   |                    |<>----------[ TIMESTAMP       ]
+   |                    |<>--{0..1}--[ DATETIME        ]
+   |                    |<>--{0..1}--[ PRECISION_TIME  ]
+   +--------------------+]]></artwork>
+          </figure></t>
+
+        <t>The time class contains the following element classes:<list
+            style="hanging">
+            <t hangText="TIMESTAMP"><vspace blankLines="0" />One. Unix
+            timestamp (number of seconds since midnight UTC, January 1, 1970).
+            The UNIX timestamp is recommended when it is expected that the
+            data will be processed entirely by programs without human
+            intervention.</t>
+
+            <t hangText="DATETIME"><vspace blankLines="0" />Zero or one. Human
+            readable time in DATETIME format (ex: 2008-12-30T01:26:42Z)</t>
+
+            <t hangText="PRECISION_TIME"><vspace blankLines="0" />Zero or one.
+            If it is desired for the time to be given more accurately, an
+            additional precisiontime element MAY be used; if given, this
+            element SHOULD contain the number of microseconds past the second
+            that the message arrived.</t>
+          </list></t>
+
+        <t anchor="xsd_TIME"></t>
+      </section>
+
+      <section anchor="peering" title="PEERING">
+        <t>PEERING element uniquely identify the connection over which the
+        data arrived.</t>
+
+        <t><figure alt="Peering">
+            <artwork><![CDATA[   +--------------------+
+   | PEERING            |
+   +--------------------+
+   |                    |<>----------[ SRC_ADDR        ]
+   |                    |<>----------[ SRC_PORT        ]
+   |                    |<>--{0..1}--[ SRC_AS          ]
+   |                    |<>----------[ DST_ADDR        ]
+   |                    |<>----------[ DST_PORT        ]
+   |                    |<>--{0..1}--[ DST_AS          ]
+   |                    |<>--{0..1}--[ BGPID           ]
+   +--------------------+]]></artwork>
+          </figure></t>
+
+        <t>The peering_session element contains the following subelements.
+          <list style="hanging">
+            <t hangText="SRC_ADDR"><vspace blankLines="0" />One. The
+            source(local) address.</t>
+
+            <t hangText="DST_ADDR"><vspace blankLines="0" />One. The
+            destination(remote) address.</t>
+
+            <t hangText="SRC_PORT"><vspace blankLines="0" />One. The
+            source(local) port.</t>
+
+            <t hangText="DST_PORT"><vspace blankLines="0" />One. The
+            destination(remote) port</t>
+
+            <t hangText="BGPID"><vspace blankLines="0" />Zero or one. The
+            bgpid</t>
+          </list></t>
+
+        <t>Other information MAY be inferred from the above elements; however,
+        If it is desired to explicitly include the source and destination AS,
+        the following elements MAY be used.<list style="hanging">
+            <t hangText="SRC_AS"><vspace blankLines="0" />Zero or one. The
+            source(local) AS number.</t>
+
+            <t hangText="DST_AS"><vspace blankLines="0" />Zero or one. The
+            destination(local) AS number.</t>
+          </list></t>
+
+        <t>The address elements (SRC_ADDR/DST_ADDR) has a AFI attribute to
+        indicate the corresponding address family. Currently, the expected
+        values for the AFI attribute are "IPv4" and "IPv6", while additional
+        families are allowed.</t>
+      </section>
+
+      <section title="Representing the message">
+        <t>BGP routing information MAY be sent in either binary or ascii
+        format. Binary messages contain BGP information exactly as it comes
+        over the wire. They take up less space than ASCII messages, can be
+        easily converted to play directly into routers. ASCII messages are
+        human-readable and can be played into scripts. Messages MUST be sent
+        in at least one of these two formats.</t>
+
+        <t>If possible, implmentations SHOULD prefer to send BGP messages in
+        both formats; if only one is used, they SHOULD prefer binary</t>
+      </section>
+
+      <section title="OCTET_MESSAGE (BGP Message in Octet Format)">
+        <t>The OCTET_MSG element simply embed a hexadecimal string.</t>
+
+        <t><figure anchor="figure-octets" title="Octets Message Class">
+            <artwork><![CDATA[   +--------------------+
+   | OCTET_MSG          |
+   +--------------------+
+   |                    |<>----------[ MARKER        ]
+   |                    |<>----------[ LENGTH        ]
+   |                    |<>----------[ TYPE          ]
+   |                    |<>----------[ OCTETS        ]
+   +--------------------+]]></artwork>
+          </figure></t>
+
+        <t>The OCTET_MSG element contains the following subelements.</t>
+
+        <t><list style="hanging">
+            <t hangText="MARKER"><vspace blankLines="0" />Required. HEXBIN.
+            The Marker (Mask) field in octets.</t>
+
+            <t hangText="LENGTH"><vspace blankLines="0" />Required. INTEGER.
+            The length of the message in octets.</t>
+
+            <t hangText="TYPE"><vspace blankLines="0" />Required. ENUM. BGP
+            message type. Message types 1-5 are defined in <xref
+            target="RFC4271">RFC 4271</xref>and <xref target="RFC2918">RFC
+            2918</xref>; additional types MAY be handled as well. In the event
+            of an unrecognized type, the type element MUST contain the value
+            "UNKNOWN"..</t>
+
+            <t><list style="empty">
+                <t>1 - OPEN</t>
+
+                <t>2 - UPDATE</t>
+
+                <t>3 - NOTIFICATION</t>
+
+                <t>4 - KEEPALIVE</t>
+
+                <t>5 - ROUTE-REFRESH</t>
+
+                <t>6+ - UNKNOWN</t>
+              </list></t>
+
+            <t hangText="OCTETS"><vspace blankLines="0" />Required. HEXBIN.
+            BGP message in octets</t>
+          </list></t>
+
+        <t anchor="xsd_OCTET_MSG"></t>
+      </section>
+
+      <section title="ASCII_MSG (BGP Message in ASCII Format)">
+        <t>The ASCII_MSG represents the BGP information in a hierarchical tree
+        structure.</t>
+
+        <t><figure alt="AsciiMsg" anchor="figure-asciimsg"
+            title="ASCII_MSG Class">
+            <artwork><![CDATA[   +--------------------+
+   | ASCII_MSG          |
+   +--------------------+
+   |                    |<>--------[ MARKER              ]
+   |                    |<>--------[ LENGTH              ]
+   |                    |<>--------[ TYPE                ]   
+   |                    |<>---+----[ OPEN                ]
+   |                    |     |----[ UPDATE              ]
+   |                    |     |----[ NOTIFICATION        ]
+   |                    |     |----[ KEEPALIVE           ]
+   |                    |     |----[ ROUTE-REFRESH       ]
+   |                    |     |----[ CISCO-ROUTE-REFRESH ]
+   |                    |     |----[ UNKNOWN             ]
+   +--------------------+]]></artwork>
+          </figure></t>
+
+        <t>The ASCII_MSG element contains the following child elements</t>
+
+        <t><list style="hanging">
+            <t hangText="MARKER"><vspace blankLines="0" />Required. HEXBIN.
+            The Marker (Mask) field in octets.</t>
+
+            <t hangText="LENGTH"><vspace blankLines="0" />Required. INTEGER.
+            The length of the message in octets.</t>
+
+            <t hangText="TYPE"><vspace blankLines="0" />Required. ENUM. BGP
+            message type. Message types 1-5 are defined in <xref
+            target="RFC4271">RFC 4271</xref>and <xref target="RFC2918">RFC
+            2918</xref>; additional types MAY be handled as well. In the event
+            of an unrecognized type, the type element MUST contain the value
+            "UNKNOWN"..</t>
+
+            <t>The ASCII_MSG element contains one of the following
+            subelements, determined by the value of the type attribute.</t>
+
+            <t hangText="OPEN"><vspace blankLines="0" />Zero or one. BGP open
+            message.</t>
+
+            <t hangText="UPDATE"><vspace blankLines="0" />Zero or one. BGP
+            update message.</t>
+
+            <t hangText="NOTIFICATION"><vspace blankLines="0" />Zero or one.
+            BGP notification message.</t>
+
+            <t hangText="KEEPALIVE"><vspace blankLines="0" />Zero or one. BGP
+            keepalive message.</t>
+
+            <t hangText="ROUTE_REFRESH"><vspace blankLines="0" />Zero or one.
+            BGP route-refresh message.</t>
+
+            <t hangText="CISCO_ROUTE_REFRESH"><vspace blankLines="0" />Zero or
+            one. BGP cisco-route-refresh message.</t>
+
+            <t hangText="UNKNOWN"><vspace blankLines="0" />Zero or one.
+            Unrecognized BGP message. Binary data would be preserved in this
+            element.</t>
+          </list></t>
+
+        <t anchor="xsd_ASCII_MSG">In the following sections, we would describe
+        each message type individually.</t>
+
+        <section title="OPEN">
+          <t>The OPEN element represent the BGP open messages.</t>
+
+          <t><figure alt="OPEN" anchor="figure-open" title="OPEN class">
+              <artwork><![CDATA[   +--------------------+
+   | OPEN               |
+   +--------------------+
+   |                    |<>----------[ VERSION         ]
+   |                    |<>----------[ SRC_AS          ]
+   |                    |<>----------[ HOLD_TIME       ]
+   |                    |<>----------[ SRC_BGP         ]
+   |                    |<>----------[ OPT_PAR_LEN     ]
+   |                    |<>----------[ OPT_PAR         ]
+   +--------------------+
+]]></artwork>
+            </figure>The open element contains the following subelements.</t>
+
+          <t><list style="hanging">
+              <t hangText="VERSION"><vspace blankLines="0" />One. The protocol
+              version number, in decimal.</t>
+
+              <t hangText="SRC_AS"><vspace blankLines="0" />One. The
+              Autonomous System number of the sender.</t>
+
+              <t hangText="HOLD_TIME"><vspace blankLines="0" />One. the
+              sender-proposed hold time, in second.</t>
+
+              <t hangText="SRC_BGP"><vspace blankLines="0" />One. the BGP
+              identifier of the sender.</t>
+
+              <t hangText="OPT_PAR_LEN"><vspace blankLines="0" />One. The
+              length of the optional parameters field in octets</t>
+
+              <t hangText="OPT_PAR"><vspace blankLines="0" />One. The
+              container of optional parameters.</t>
+            </list></t>
+
+          <section title="Defining and Processing the Parameter Value field">
+            <t>OPT_PAR is a container class for zero or more parameter
+            subelements.</t>
+
+            <t><figure anchor="figure-opt_par" title="OPT_PAR Class">
+                <artwork><![CDATA[   +--------------------+
+   | OPT_PAR            |
+   +--------------------+
+   | INTEGER count      |<>--{0..*}--[ PARAMETER       ]
+   +--------------------+]]></artwork>
+              </figure></t>
+
+            <t>The opt_par element has the following attributes.</t>
+
+            <t><list style="hanging">
+                <t hangText="count"><vspace blankLines="0" />Required.
+                INTEGER. The number of parameters.</t>
+              </list></t>
+
+            <t>The opt_par element contains the following subelements.</t>
+
+            <t><list style="hanging">
+                <t hangText="PARAMETER"><vspace blankLines="0" />Zero or more.
+                The optional parameters.</t>
+              </list></t>
+
+            <t>For each optional parameter, the OPT_PAR element contains a
+            PARAMETER subelement with attribute "code" containing the integer
+            code for the parameter type. Each PARAMETER contains three
+            subelements: a LENGTH tag giving the length of the data in octets,
+            a TYPE tag giving the name of the parameter, and a tag whose label
+            is the name of the parameter and which contains parameter-defined
+            elements. If the code is not recognized, TYPE is set to OTHER and
+            the OTHER element holds unprocessed hexadecimal data.</t>
+
+            <t>The last element s processed differently depending on the type
+            of parameter. This section describes the most common parameter
+            types. Additional parameter types MAY be defined, and MUST confirm
+            to the following format. Every parameter has attribute "code"
+            giving the integer value of its type, element LENGTH giving the
+            length in octets of its data, and element TYPE giving its name. It
+            then contains an element whose label is the name of the parameter.
+            This element may have attributes and subelements defined as
+            desired; however, attributes SHOULD describe the data, and the
+            actual data SHOULD be in the form of subelements. Parameters do
+            not need to contain information; self-closing elements are
+            permitted. Thus, every parameter will be in the following
+            format:</t>
+
+            <figure>
+              <artwork><![CDATA[   +--------------------+
+   | PARAMETER          |
+   +--------------------+
+   | INTEGER code       |<>--------[ LENGTH         ]
+   |                    |<>--------[ TYPE           ]
+   |                    |<>---+----[ AUTHENTICATION ]
+   |                    |     |----[ CAPABILITIES   ]
+   |                    |     |----[ OTHER          ]
+   +--------------------+]]></artwork>
+            </figure>
+
+            <t>The parameter element has the following attributes.</t>
+
+            <t><list style="hanging">
+                <t hangText="code"><vspace blankLines="0" />Required. INTEGER.
+                The integer code for the parameter type</t>
+              </list></t>
+
+            <t>The parameter element contains the following subelements.</t>
+
+            <t><list style="hanging">
+                <t hangText="LENGTH"><vspace blankLines="0" />One. The length
+                of the data in octets</t>
+
+                <t hangText="TYPE"><vspace blankLines="0" />One. The name of
+                the parameter</t>
+
+                <t hangText="AUTHENTICATION/CAPABILITES/OTHER"><vspace
+                blankLines="0" />One. Two most common paraameter type:
+                authentication or capabilities. Additional parameter types can
+                be defined by the OTHER element.</t>
+              </list></t>
+
+            <section title="AUTHENTICATION">
+              <t>An authentication parameter is stored with type
+              "AUTHENTICATION" and additional attribute "code". This element
+              contains hexadecimal authentication data.</t>
+
+              <t><figure anchor="figure-auth" title="AUTHENTICATION class">
+                  <artwork><![CDATA[   +--------------------+
+   | AUTHENTICATION     |
+   +--------------------+
+   | INTEGER code       |
+   |                    |
+   +--------------------+]]></artwork>
+                </figure></t>
+
+              <t>For example, this parameter is expressed as</t>
+
+              <figure>
+                <artwork><![CDATA[   <PARAMETER code="1">
+      <LENGTH>int</LENGTH>
+      <TYPE>AUTHENTICATION</TYPE>
+      <AUTHENTICATION code="int">hexadecimal data</AUTHENTICATION>
+   </PARAMETER>
+]]></artwork>
+              </figure>
+            </section>
+
+            <section title="CAPABILITIES">
+              <t>The capabilities parameter is encoded in CAPABILITIES element
+              and one or more child CAP elements, as well as an attribute
+              "count" giving the number of such elements. Each CAP element
+              contains LENGTH, TYPE, and subelements decided by the type
+              value.<figure alt="" anchor="figure-cap"
+                  title="CAPABILITIES Class">
+                  <artwork><![CDATA[ +---------------+
+ | CAPABILITIES  |
+ +---------------+           +---------+
+ | INTEGER count |<>-{0..*}- |  CAP    |
+ |               |           +---------+
+ +---------------+           |         |<>----[ LENGTH    ]
+                             |         |<>----[ TYPE      ]
+                             |         |<>-+--[ MULTIPROTOCOL       ]
+                             +---------+   |--[ ROUTE_REFRESH       ]
+                                           |--[ CISCO_ROUTE_REFRESH ]
+                                           |--[ OTHER ]
+]]></artwork>
+                </figure></t>
+
+              <t>For example, this parameter is expressed as</t>
+
+              <figure>
+                <artwork><![CDATA[   <PARAMETER code="2">
+      <LENGTH>int</LENGTH>
+      <TYPE>CAPABILITIES</TYPE>
+      <CAPABILITIES count="1">
+         <CAP>
+            <LENGTH>int</length>
+            <TYPE>ROUTE_REFRESH</TYPE>
+            <ROUTE_REFRESH/>
+         </CAP>
+      </CAPABILITIES>
+   </PARAMETER>
+
+]]></artwork>
+              </figure>
+            </section>
+          </section>
+        </section>
+
+        <section title="The UPDATE element">
+          <t>The following subelements are included in the UPDATE message:
+          &lt;withdrawn_routes_len&gt;, &lt;withdrawn_routes&gt;,
+          &lt;path_len&gt;, &lt;path_attrib&gt;, and &lt;NLRI&gt;.</t>
+
+          <t><figure alt="UPDATE" anchor="figure-update">
+              <artwork><![CDATA[   +--------------------+
+   | UPDATE             |
+   +--------------------+
+   |                    |<>----------[ WITHDRAWN_LEN         ]
+   |                    |<>----------[ WITHDRAWN             ]
+   |                    |<>----------[ PATH_ATTRIBUTES_LEN   ]
+   |                    |<>----------[ PATH_ATTRIBUTES       ]
+   |                    |<>----------[ NLRI                  ]
+   +--------------------+
+
+]]></artwork>
+            </figure>The UPDATE element contains the following
+          subelements:<list style="hanging">
+              <t hangText="WITHDRAWN_LEN"><vspace blankLines="0" />One. the
+              total length of the withdrawn routes field in octets</t>
+
+              <t hangText="WITHDRAWN"><vspace blankLines="0" />One. contains
+              zero or more PREFIX subelements, each of which contains an
+              address prefix. This element has attribute "count" giving the
+              total number of PREFIX subelements. PREFIX represents an address
+              prefix. Each PREFIX also has an attirbute "label", which carries
+              additional information associated with this prefix, such as new
+              announcement, duplicated announcement, etc. These labels are
+              uniquely produced by BGPMon, wich add meaningful information to
+              prefixes.</t>
+
+              <t hangText="PATH_ATTRIBUTES_LEN"><vspace blankLines="0" />One.
+              the total length of the path attributes field in octets</t>
+
+              <t hangText="PATH_ATTRIBUTES"><vspace blankLines="0" />One.
+              contains zero or more ATTRIBUTE elements and a "count" attribute
+              giving the number of such elements.</t>
+
+              <t hangText="NLRI"><vspace blankLines="0" />One. contains zero
+              or more PREFIX subelements, each of which contains an address
+              prefix. This element has attribute "count" giving the total
+              number of PREFIX subelements</t>
+            </list>By comparing a new update for a prefix to the last update
+          for the same prefix received from the same peer, BGPmon labels
+          updates as follows.<list style="hanging">
+              <t hangText="new announcement"><vspace blankLines="0" />The peer
+              is not currently announcing a route to a prefix and then a route
+              to the prefix is reported </t>
+
+              <t hangText="withdraw"><vspace blankLines="0" />The peer is
+              currently announcing a route to the prefix and then withdraws
+              the route</t>
+
+              <t hangText="different path"><vspace blankLines="0" />The peer
+              is currently announcing a route to a prefix and then changes the
+              route (AS path) to that prefix</t>
+
+              <t hangText="same path"><vspace blankLines="0" /> or the path
+              remains the same but some other attribute has changed</t>
+
+              <t hangText="duplicate announcement"><vspace
+              blankLines="0" />The peer readvertises the exact same route to a
+              prefix. In BGPmon, duplicate updates are often the result of a
+              request for routing table transfer. BGPmon periodically asks a
+              peer to re-report all of its routes. This generates a large
+              number of duplicate updates, but allows downstream BGPbrokers
+              and clients to learn the full table of peer and/or synchronize
+              any state associated with data from that peer. </t>
+
+              <t hangText="duplicate withdraw"><vspace blankLines="0" />The
+              peer withdraws the route to the prefix that has not been
+              advertised in the first place. These are typically the result of
+              bugs or sub-optimal implementation decisions at peer
+              routers.</t>
+            </list>Overall, these labels allows users to focus on particular
+          prefixes they are interested. For example, tools such as prefix
+          hijack detectors are primarily concerned with announcements with
+          different paths. These tools can typically skip othere updates to
+          improve performance. </t>
+        </section>
+
+        <section title="PATH_ATTRIBUTES Class">
+          <t>PATH_ATTRIBUTES contains zero or more ATTRIBUTE.</t>
+
+          <figure>
+            <artwork><![CDATA[ +-----------------+
+ | PATH_ATTRIBUTES |
+ +-----------------+            +---------------+
+ | INTEGER counT   |<>--{0..*}--| ATTRIBUTE     |
+ |                 |            +---------------+
+ +-----------------+            | INTEGER code  |<>----[ FLAGS     ]
+                                |               |<>----[ LENGTH    ]
+                                |               |<>----[ TYPE      ]
+                                |               |<>-+--[ ORIGIN    ]
+                                +---------------+   |--[ AS_PATH   ]
+                                                    |... 
+       ]]></artwork>
+          </figure>
+
+          <t>Moreover, the ATTRIBUTE element contains the following
+          attributes:</t>
+
+          <t><list style="hanging">
+              <t hangText="count"><vspace blankLines="0" />Required. INTEGER.
+              The number of attributes.</t>
+            </list></t>
+
+          <t>The ATTRIBUTE element contains the following subelements:<list
+              style="hanging">
+              <t hangText="FLAGS"><vspace blankLines="0" />One. This element
+              contains an attribute "code" giving the flag byte as an octet.
+              Additionally, it contains subelements for all defined flags. The
+              subelements for the current flags, as defined in RFC 1771, are
+              OPTIONAL, TRANSITIVE, PARTIAL, and EXTENDED.</t>
+
+              <t hangText="LENGTH"><vspace blankLines="0" />One. The attribute
+              length</t>
+
+              <t hangText="TYPE"><vspace blankLines="0" />One. The name of the
+              attribute type</t>
+            </list></t>
+
+          <t>Each type correponds to a specific element. For brevitiy, the
+          attribute types are summarized in the following table. Please refer
+          to the schema and example sections for details.</t>
+
+          <texttable>
+            <ttcol>Code</ttcol>
+
+            <ttcol>Type</ttcol>
+
+            <ttcol>Description</ttcol>
+
+            <c>1</c>
+
+            <c>ORIGIN</c>
+
+            <c>This is a well-known mandatory attribute with value IGP, EGP,
+            or INCOMPLETE.</c>
+
+            <c>2</c>
+
+            <c>AS_PATH</c>
+
+            <c>This is a well-known mandatory attribute with "type" attribute
+            set to either as_set or as_sequence. It contains one or more AS
+            subelements, each of which holds an Autonomous System number.</c>
+
+            <c>3</c>
+
+            <c>NEXT_HOP</c>
+
+            <c>This is a well-known mandatory attribute that holds the next
+            hop address as its value.</c>
+
+            <c>4</c>
+
+            <c>MULTI_EXIT_DISC</c>
+
+            <c>This is an optional non-transitive attribute with integer
+            value.</c>
+
+            <c>5</c>
+
+            <c>LOCAL_PREF</c>
+
+            <c>This is a well-known discretionary attribute with integer
+            value.</c>
+
+            <c>6</c>
+
+            <c>ATOMIC_AGGREGATE</c>
+
+            <c>This is a well-known discretionary attribute with no value; the
+            ATOMIC_AGGREGATE element is self-closing.</c>
+
+            <c>7</c>
+
+            <c>AGGREGATOR</c>
+
+            <c>This is an optional transitive attribute containing two
+            subelements: AS, containing an AS number, and ADDR, containing an
+            address.</c>
+
+            <c>8</c>
+
+            <c>COMMUNITITIES</c>
+
+            <c>This is an optional transitive attribute containing a 32-bit
+            integer. <xref target="RFC1997"></xref></c>
+
+            <c>9</c>
+
+            <c>ORIGINATOR_ID</c>
+
+            <c>This is an optional non-transitive attribute containing a
+            32-bit integer.</c>
+
+            <c>10</c>
+
+            <c>CLUSTER_LIST</c>
+
+            <c>This is an optional non-transitive attribute containing zero or
+            more ID subelements and a "count" attribute giving the number of
+            such subelements.</c>
+
+            <c>12</c>
+
+            <c>ADVERTISER</c>
+
+            <c>This is an optional non-transitive attribute containing an
+            address.</c>
+
+            <c>13</c>
+
+            <c>RCID_PATH</c>
+
+            <c>This is an optional non-transitive attribute containing zero or
+            more ID subelements and a "count" attribute giving the number of
+            such subelements.</c>
+
+            <c>15</c>
+
+            <c>MP_REACH_NLRI</c>
+
+            <c>This is an optional non-transitive attribute that contains the
+            following subelements: AFI contains the name of the Address Family
+            Identifier being used. SAFI contains the Subsequent Address Family
+            Identifier. NEXT_HOP contains the network address of the next hop.
+            SNPA_LIST_LEN contains the length of the SNPA_LIST in octets.
+            SNPA_LIST contains zero or more SNPA elements and a "count"
+            attribute giving the total number of SNPA elements it contains.
+            Furthermore, each SNPA represents a address. NLRI contains one or
+            more PREFIX elements and a "count" attribute giving the number of
+            such elements.<xref target="RFC4760"></xref></c>
+
+            <c>15</c>
+
+            <c>MP_UNREACH_NLRI</c>
+
+            <c>This is an optional non-transitive attribute containing the
+            following subelements: AFI contains the name of the Address Family
+            Identifier being used. SAFI contains the Subsequent Address Family
+            Identifier. WITHDRAWN contains one or more PREFIX elements and a
+            "count" attribute giving the number of such elements.</c>
+
+            <c>16</c>
+
+            <c>EXTENDED_COMMUNITIES</c>
+
+            <c>This is an optional non-transitive attribute containing the
+            octets value.<xref target="Rosen"></xref></c>
+
+            <c>.7</c>
+
+            <c>AS4_PATH</c>
+
+            <c>This is a well-known mandatory attribute with "type" attribute
+            set to either as_set or as_sequence. It contains one or more AS
+            subelements, each of which holds an Autonomous System number.
+            <xref target="RFC4893"></xref></c>
+
+            <c>18</c>
+
+            <c>AS4_AGGREGATOR</c>
+
+            <c>This is an optional transitive attribute containing two
+            subelements: AS, containing an AS number, and ADDR, containing an
+            AFI address.</c>
+          </texttable>
+
+          <t>Additional attributes MAY be defined; they MUST follow the
+          structure described above. Suppose that data is stored in the
+          &lt;NAME&gt; element or in subelements.In the event that the element
+          contains one subelement that may appear a number of times, the main
+          &lt;NAME&gt; tag should include a "count" attribute. The
+          &lt;NAME&gt; element may have any desired attributes and elements,
+          but attributes SHOULD describe the data while elements SHOULD
+          contain the data. If the code value is not defined, the &lt;type&gt;
+          subelement has the value "UNKNOWN".</t>
+        </section>
+
+        <section title="The KEEPALIVE">
+          <t>The KEEPALIVE element is self-closing and contains no attributes
+          or subelements.</t>
+
+          <t><figure anchor="figure-keepalive" title="Keepalive Class">
+              <artwork><![CDATA[   +--------------------+
+   | keepalive          |
+   +--------------------+
+   |                    |
+   +--------------------+]]></artwork>
+            </figure></t>
+        </section>
+
+        <section title="The ROUTE_REFRESH">
+          <t>The ROUTE_REFRESH element is self-closing and contains no
+          attributes or subelements.</t>
+
+          <t><figure anchor="figure-refresh" title="ROUTE_REFRESH Class">
+              <artwork><![CDATA[   +--------------------+
+   | ROUTE_REFRESH      |
+   +--------------------+
+   |                    |
+   +--------------------+]]></artwork>
+            </figure></t>
+        </section>
+
+        <section title="The CISCO_ROUTE_REFRESH element">
+          <t>The CISCO_ROUTE_REFRESH is self-closing and contains no
+          attributes or subelements.</t>
+
+          <t><figure anchor="figure-c-refresh" title="CISCO_ROUTE_REFRESH">
+              <artwork><![CDATA[   +---------------------+
+   | CISCO_ROUTE_REFRESH |
+   +---------------------+
+   |                     |
+   +---------------------+]]></artwork>
+            </figure></t>
+        </section>
+
+        <section title="The NOTIFICATION">
+          <t>The notification element contains the information for bgp
+          notification.</t>
+
+          <t><figure anchor="figure-notification" title="NOTIFICATION Class">
+              <artwork><![CDATA[   +------------------+
+   | NOTIFICATION     |
+   +------------------+
+   |                  |<>----------[ CODE      ]
+   |                  |<>----------[ SUBCODE   ]
+   |                  |<>----------[ DATA      ]
+   +------------------+]]></artwork>
+            </figure></t>
+
+          <t>The notification element contains the following subelements.<list
+              style="hanging">
+              <t hangText="CODE"><vspace blankLines="0" />One. Human readable
+              error string cooresponding to a numberic 'value' attribute.</t>
+
+              <t hangText="SUBCODE"><vspace blankLines="0" />One. Human
+              readable sub error string cooresponding to a numberic 'value'
+              attribute</t>
+
+              <t hangText="DATA"><vspace blankLines="0" />One. The remainder
+              of the message, whose content depends on the error code and
+              subcode.</t>
+            </list></t>
+
+          <t>The &lt;error_code&gt; element is set according to the value of
+          the "code" attribute:</t>
+
+          <texttable>
+            <ttcol>code</ttcol>
+
+            <ttcol>error_code</ttcol>
+
+            <c>1</c>
+
+            <c>Message Header Errori</c>
+
+            <c>2</c>
+
+            <c>OPEN Message Error</c>
+
+            <c>3</c>
+
+            <c>UPDATE Message Error</c>
+
+            <c>4</c>
+
+            <c>Hold Timer Expired</c>
+
+            <c>5</c>
+
+            <c>Finite State Machine Error</c>
+
+            <c>6</c>
+
+            <c>Cease</c>
+
+            <c>7-255</c>
+
+            <c>Undefined code</c>
+          </texttable>
+
+          <t>The &lt;error_subcode&gt; element is set according to the value
+          of the "subcode" attribute:</t>
+
+          <texttable>
+            <ttcol>code</ttcol>
+
+            <ttcol>subcode</ttcol>
+
+            <ttcol>error_subcode</ttcol>
+
+            <c>1</c>
+
+            <c>1</c>
+
+            <c>Connection Not Synchronized</c>
+
+            <c>1</c>
+
+            <c>2</c>
+
+            <c>Bad Message Length</c>
+
+            <c>1</c>
+
+            <c>3</c>
+
+            <c>Bad Message Type</c>
+
+            <c>2</c>
+
+            <c>1</c>
+
+            <c>Unsupported Version Number</c>
+
+            <c>2</c>
+
+            <c>2</c>
+
+            <c>Bad Peer AS</c>
+
+            <c>2</c>
+
+            <c>3</c>
+
+            <c>Bad BGP Identifier</c>
+
+            <c>2</c>
+
+            <c>4</c>
+
+            <c>Unsupported Optional Parameter</c>
+
+            <c>2</c>
+
+            <c>5</c>
+
+            <c>Authentication Failure</c>
+
+            <c>2</c>
+
+            <c>6</c>
+
+            <c>Unacceptable Hold Time</c>
+
+            <c>3</c>
+
+            <c>1</c>
+
+            <c>Malformed Attribute List</c>
+
+            <c>3</c>
+
+            <c>2</c>
+
+            <c>Unrecognized Well-known Attribute</c>
+
+            <c>3</c>
+
+            <c>3</c>
+
+            <c>Missing Well-known Attribute</c>
+
+            <c>3</c>
+
+            <c>4</c>
+
+            <c>Attribute Flags Error</c>
+
+            <c>3</c>
+
+            <c>5</c>
+
+            <c>Attribute Length Error</c>
+
+            <c>3</c>
+
+            <c>6</c>
+
+            <c>Invalid ORIGIN Attribute</c>
+
+            <c>3</c>
+
+            <c>7</c>
+
+            <c>AS Routing Loop</c>
+
+            <c>3</c>
+
+            <c>8</c>
+
+            <c>Invalid NEXT_HOP Attribute</c>
+
+            <c>3</c>
+
+            <c>9</c>
+
+            <c>Optional Attribute Error</c>
+
+            <c>3</c>
+
+            <c>10</c>
+
+            <c>Invalid Network Field</c>
+
+            <c>3</c>
+
+            <c>11</c>
+
+            <c>Malformed AS_PATH</c>
+
+            <c>6</c>
+
+            <c>1</c>
+
+            <c>Maximum Number of Prefixes Reached"</c>
+
+            <c>6</c>
+
+            <c>2</c>
+
+            <c>Administrative Shutdown"</c>
+
+            <c>6</c>
+
+            <c>3</c>
+
+            <c>Peer De-configured"</c>
+
+            <c>6</c>
+
+            <c>4</c>
+
+            <c>Administrative Reset"</c>
+
+            <c>6</c>
+
+            <c>5</c>
+
+            <c>Connection Rejected"</c>
+
+            <c>6</c>
+
+            <c>6</c>
+
+            <c>Other Configuration Change"</c>
+
+            <c>6</c>
+
+            <c>7</c>
+
+            <c>Connection Collision Resolution"</c>
+
+            <c>6</c>
+
+            <c>8</c>
+
+            <c>Out of Resources"</c>
+          </texttable>
+
+          <t>For all other codes, the &lt;error_subcode&gt; subelement has the
+          value "Undefined error subcode". The BGPmon MAY handle additional
+          error subcodes.</t>
+
+          <section title="Example">
+            <t>The NOTIFICATION message might look like this:</t>
+
+            <figure>
+              <artwork><![CDATA[<NOTIFICATION code="3" subcode="7">
+   <error_code>Bad Message Type</error_code>
+   <error_subcode>AS Routing Loop</error_code>
+   <data>hexadecimal</data>
+</NOTIFICATION>
+]]></artwork>
+            </figure>
+          </section>
+        </section>
+      </section>
+
+      <section title="STATUS_MSG ">
+        <t>The STATUS_MSG contains one of four kinds of messages:
+        QUEUE_STATUS, SESSION_STATUS, and CHAIN_STATUS, BGPMON_STATUS,
+        representing the operation status of the BGPMon internal quque, BGP
+        peering routers, peering BGPMon server, and BGPMon server itself
+        respectively.</t>
+
+        <figure anchor="figure-status-msg" title="STATUS_MSG class">
+          <artwork><![CDATA[   +---------------+
+   | STATUS_MSG    |
+   +---------------+
+   |               |<>-----[ BGPMON         ]
+   |               |<>--+--[ SESSION_STATUS ]
+   |               |    |--[ CHAIN_STATUS   ]
+   |               |    |--[ QUEUE_STATUS   ]
+   |               |    |--[ BGPMON_STATUS  ]
+   +---------------+]]></artwork>
+        </figure>
+
+        <section title="BGPMON">
+          <t>Because of the BGPMon chaining feature, it is possilbe that a
+          client could receive status messages originated from multiple BGPMon
+          servers. This BGPMON element is used by clients to identify the
+          origin of the status message.</t>
+
+          <figure anchor="figure-bgpmon" title="BGPMON">
+            <artwork><![CDATA[ +---------------+
+ | BGPMON        |
+ +---------------+      
+ |               |<>---------[ ADDR       ]
+ |               |<>---------[ PORT       ]
+ |               |<>-{0..1}--[ AS         ]
+ +---------------+                     ]]></artwork>
+          </figure>
+
+          <t>The BGPMON element contains the following elements<list
+              style="hanging">
+              <t hangText="ADDR"><vspace blankLines="0" />One. The BGPMon
+              network address, usually identical to the address which accepts
+              user connections.</t>
+
+              <t hangText="PORT"><vspace blankLines="0" />One. The BGPMon
+              port</t>
+
+              <t hangText="AS"><vspace blankLines="0" />Zero or one. Optional
+              AS number</t>
+            </list></t>
+        </section>
+
+        <section title="QUEUE_STATUS / QUEUE">
+          <t>QUEUE_STATUS includes zero or multiple child QUEUE elements,
+          which in turn carry the information about BGPMon internal message
+          queues.</t>
+
+          <figure anchor="figure-queue-status" title="QUEUE_STATUS">
+            <artwork><![CDATA[ +---------------+
+ | QUEUE_STATUS  |
+ +---------------+           +---------+
+ | INTEGER count |<>-{0..*}- |  QUEUE  |
+ |               |           +---------+
+ +---------------+           |         |<>----[ NAME   ]
+                             |         |<>----[ ITEM   ]
+                             |         |<>----[ READER ]
+                             |         |<>----[ WRITER ]
+                             |         |<>----[ PACING ]
+                             +---------+   ]]></artwork>
+          </figure>
+
+          <t>The QUEUE_STATUS contains the following attributes:<list
+              style="hanging">
+              <t hangText="count"><vspace blankLines="0" />Required. INTEGER.
+              The number of QUEUE elements.</t>
+            </list>The QUEUE_STATUS contains the following elements<list
+              style="hanging">
+              <t hangText="QUEUE"><vspace blankLines="0" />Zero or more. The
+              QEUEU element which is described as the following.</t>
+            </list>The QUEUE element contains the following elements<list
+              style="hanging">
+              <t hangText="NAME"><vspace blankLines="0" />One. Human readalbe
+              name</t>
+
+              <t hangText="ITEM"><vspace blankLines="0" />One. The statistic
+              information about the queue usage.</t>
+
+              <t hangText="READER"><vspace blankLines="0" />One. Ths statistic
+              information about the queue reader.</t>
+
+              <t hangText="WRITER"><vspace blankLines="0" />One. The statistic
+              information about the queue writer.</t>
+
+              <t hangText="PACING"><vspace blankLines="0" />One. Configuration
+              and statistic information about the queue pacing machanism.
+              Pacing is used to maintain stable queu usage. Please refer
+              BGPMon specification for detail information</t>
+            </list></t>
+
+          <figure anchor="figure-queue-status-msg" title="QUEUE_STATUS">
+            <artwork><![CDATA[ +-----------+
+ | PACING    |
+ +-----------+
+ |           |<>----[ FLAG        ]
+ |           |<>----[ COUNT       ]
+ |           |<>----[ WRITE_LIMIT ]
+ +-----------+]]></artwork>
+          </figure>
+        </section>
+
+        <section title="CHAIN_STATUS / CHAIN">
+          <t>CHAIN_STATUS includes zero or multiple child CHAIN elements.</t>
+
+          <figure anchor="figure-chain-status" title="CHAIN_STATUS">
+            <artwork><![CDATA[ +---------------+
+ | CHAIN_STATUS  |
+ +---------------+           +-------+
+ | INTEGER count |<>-{0..*}- | CHAIN |
+ |               |           +-------+
+ +---------------+           |       |<>--------[ ADDR         ]
+                             |       |<>--------[ PORT         ]
+                             |       |<>-{0..1}-[ AS           ]
+                             |       |<>-{0..1}-[ STATE        ]
+                             |       |<>-{0..1}-[ STATE_CHANGE ]
+                             |       |<>-{0..1}-[ OPTIME       ]
+                             |       |<>-{0..1}-[ RECV_MESSAGE ]
+                             |       |<>-{0..1}-[ RESET        ]
+                             +-------+   ]]></artwork>
+          </figure>
+
+          <t>The CHAIN_STATUS contains the following attributes:<list
+              style="hanging">
+              <t hangText="count"><vspace blankLines="0" />Required. INTEGER.
+              The number of CHAIN elements.</t>
+            </list>The CHAIN_STATUS contains the following elements<list
+              style="hanging">
+              <t hangText="CHAIN"><vspace blankLines="0" />Zero or more. The
+              CHAIN element which is described as the following.</t>
+            </list>The QUEUE element contains the following elements<list
+              style="hanging">
+              <t hangText="ADDR"><vspace blankLines="0" />One. The address of
+              the peering BGPMon server</t>
+
+              <t hangText="ITEM"><vspace blankLines="0" />One. The port of the
+              peering BGPMon server</t>
+
+              <t hangText="AS"><vspace blankLines="0" />Zero or one. The AS
+              number of the peering BGPMon server</t>
+
+              <t hangText="STATE"><vspace blankLines="0" />Zero or one. The
+              current state</t>
+
+              <t hangText="STATE_CHANGE"><vspace blankLines="0" />Zero or one.
+              The state change</t>
+
+              <t hangText="OPTIME"><vspace blankLines="0" />Zero or one. The
+              operation time, such as uptime, last down, etc.</t>
+
+              <t hangText="RECV_MESSAGE"><vspace blankLines="0" />Zero or one.
+              The statstic information about the number of messages
+              received</t>
+
+              <t hangText="RESET"><vspace blankLines="0" />One. The statistic
+              information about the number of chain resets.</t>
+            </list></t>
+        </section>
+
+        <section title="SESSION_STATUS / SESSION">
+          <t>SESSION_STATUS includes zero or multiple child SESSION
+          elements.</t>
+
+          <figure anchor="figure-session-status" title="SESSION_STATUS">
+            <artwork><![CDATA[ +----------------+
+ | SESSION_STATUS |
+ +----------------+          +-------+
+ | INTEGER count  |<>-{0..*}-|SESSION|
+ |                |          +-------+
+ +----------------+          |       |<>--------[ ADDR         ]
+                             |       |<>--------[ PORT         ]
+                             |       |<>-{0..1}-[ AS           ]
+                             |       |<>-{0..1}-[ STATE        ]
+                             |       |<>-{0..1}-[ STATE_CHANGE ]
+                             |       |<>-{0..1}-[ OPTIME       ]
+                             |       |<>-{0..1}-[ RECV_MESSAGE ]
+                             |       |<>-{0..1}-[ RESET            ]
+                             |       |<>-{0..1}-[ PREFIX           ]
+                             |       |<>-{0..1}-[ ATTRIBUTE        ]
+                             |       |<>-{0..1}-[ MEMORY_USAGE     ]
+                             |       |<>-{0..1}-[ ANNOUNCEMENT     ]
+                             |       |<>-{0..1}-[ DUP_ANNOUNCEMENT ]
+                             |       |<>-{0..1}-[ SAME_PATH        ]
+                             |       |<>-{0..1}-[ DIFF_PATH        ]
+                             |       |<>-{0..1}-[ WITHDRWAL        ]
+                             |       |<>-{0..1}-[ DUP_WITHDRWAL    ]
+                             +-------+   ]]></artwork>
+          </figure>
+
+          <t>The CHAIN_STATUS contains the following attributes:<list
+              style="hanging">
+              <t hangText="count"><vspace blankLines="0" />Required. INTEGER.
+              The number of CHAIN elements.</t>
+            </list>The CHAIN_STATUS contains the following elements<list
+              style="hanging">
+              <t hangText="SESSION"><vspace blankLines="0" />Zero or more. The
+              SESSION element which is described as the following.</t>
+            </list>The QUEUE element contains the following elements. Please
+          refer to CHAIN for identical elements.<list style="hanging">
+              <t hangText="PREFIX"><vspace blankLines="0" />Zero or one. The
+              statstic information about the number of prefixes received</t>
+
+              <t hangText="ATTRIBUTE"><vspace blankLines="0" />Zero or one.
+              The statstic information about the number of path attributes
+              received</t>
+
+              <t hangText="MEMORY_USAGE"><vspace blankLines="0" />One. The
+              statistic information about the memory usage</t>
+
+              <t hangText="ANNOUNCEMENT"><vspace blankLines="0" />Zero or one.
+              The statstic information about the number of announcements
+              received</t>
+
+              <t hangText="DUP_ANNOUNCEMENT"><vspace blankLines="0" />Zero or
+              one. The statstic information about the number of duplicate
+              announcements received</t>
+
+              <t hangText="SAME_PATH"><vspace blankLines="0" />Zero or one.
+              The statstic information about the number of same as path
+              received</t>
+
+              <t hangText="DIFF_PATH"><vspace blankLines="0" />Zero or one.
+              The statstic information about the number of different as path
+              received</t>
+
+              <t hangText="WITHDRWAL"><vspace blankLines="0" />Zero or one.
+              The statstic information about the number of withdrawl
+              received</t>
+
+              <t hangText="DUP_WITHDRWAL"><vspace blankLines="0" />Zero or
+              one. The statstic information about the number of duplicate
+              withdrawal received</t>
+            </list></t>
+        </section>
+      </section>
+    </section>
+
+    <section title="Examples">
+      <t></t>
+
+      <section title="BGP Open Message">
+        <t></t>
+
+        <figure>
+          <artwork><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<BGP_MESSAGE version="0.1" length="9999">
+  <TIME>
+    <TIMESTAMP>1228973922</TIMESTAMP>
+    <DATETIME>2008-12-09T00:00:00Z</DATETIME>
+    <PRECISION_TIME>328</PRECISION_TIME>
+  </TIME>
+  <PEERING_SESSION>
+    <SRC_ADDR afi="IPv4">89.149.178.10</SRC_ADDR>
+    <DST_ADDR afi="IPv4">129.82.138.6</DST_ADDR>
+    <SRC_PORT>139</SRC_PORT>
+    <DST_PORT>139</DST_PORT>
+    <SRC_AS>3257</SRC_AS>
+    <DST_AS>6447</DST_AS>
+  </PEERING_SESSION>
+  <ASCII_MSG length="87" type="OPEN">
+    <MARKER>1122220</MARKER>
+    <OPEN>
+      <VERSION>4.0</VERSION>
+      <SRC_AS>3593</SRC_AS>
+      <HOLD_TIME>2943</HOLD_TIME>
+      <SRC_BGP>89.149.22.11</SRC_BGP>
+      <OPT_PAR_LEN>646</OPT_PAR_LEN>
+      <OPT_PAR count="3">
+        <PARAMETER code="1">
+          <TYPE>AUTHENTICATION</TYPE>
+          <LENGTH>234</LENGTH>
+          <AUTHENTICATION code="8">FFDDEE00E039D2</AUTHENTICATION>
+        </PARAMETER>
+        <PARAMETER code="2">
+          <TYPE>CAPABILITIES</TYPE>
+          <LENGTH>2700</LENGTH>
+          <CAPABILITIES count="2">
+            <CAP>
+              <CODE>11</CODE>
+              <LENGTH>26</LENGTH>
+              <VALUE>CAP_STRING</VALUE>
+            </CAP>
+            <CAP>
+              <CODE>13</CODE>
+              <LENGTH>6</LENGTH>
+              <VALUE>CAP_STRING</VALUE>
+            </CAP>
+          </CAPABILITIES>
+        </PARAMETER>
+        <PARAMETER code="99">
+          <TYPE>Unknown</TYPE>
+          <LENGTH>1087</LENGTH>
+          <UNKNOWN>123423A3D3BBEE</UNKNOWN>
+        </PARAMETER>
+      </OPT_PAR>
+    </OPEN>
+  </ASCII_MSG>
+  <OCTETS length="3811" type="OPEN">FFFFFFFFFFFFF...</OCTETS>
+</BGP_MESSAGE>
+
+]]></artwork>
+        </figure>
+      </section>
+
+      <section title="BGP Update Message">
+        <figure>
+          <artwork><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<BGP_MESSAGE version="0.1" length="9999">
+  <TIME>
+    <TIMESTAMP>1228973922</TIMESTAMP>
+    <DATETIME>2008-12-09T00:00:00Z</DATETIME>
+    <PRECISION_TIME>328</PRECISION_TIME>
+  </TIME>
+  <PEERING_SESSION>
+    <SRC_ADDR afi="IPv4">89.149.178.10</SRC_ADDR>
+    <DST_ADDR afi="IPv4">129.82.138.6</DST_ADDR>
+    <SRC_PORT>139</SRC_PORT>
+    <DST_PORT>139</DST_PORT>
+    <SRC_AS>3257</SRC_AS>
+    <DST_AS>6447</DST_AS>
+  </PEERING_SESSION>
+  <ASCII_MSG length="87" type="UPDATE">
+    <MARKER>1110011122</MARKER>
+    <UPDATE>
+      <WITHDRAWN_ROUTES_LEN>5781</WITHDRAWN_ROUTES_LEN>
+      <WITHDRAWN_ROUTES count="2">
+        <PREFIX label="WITH">66.231.212</PREFIX>
+        <PREFIX label="DUPW">66.186.174</PREFIX>
+      </WITHDRAWN_ROUTES>
+      <PATH_ATTRIBUTES_LEN>814</PATH_ATTRIBUTES_LEN>
+      <PATH_ATTRIBUTE count="0">
+        <ATTRIBUTE code="1">
+          <Flags code="1111">
+            <Optional/>
+            <Transitive/>
+            <Partial/>
+            <Extended/>
+          </Flags>
+          <Length>343</Length>
+          <TYPE>ORIGIN</TYPE>
+          <ORIGIN>IGP</ORIGIN>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="1111">
+            <Optional/>
+            <Transitive/>
+            <Partial/>
+            <Extended/>
+          </Flags>
+          <Length>343</Length>
+          <TYPE>AS4_PATH</TYPE>
+          <AS_PATH type="AS_SEQUENCE">
+            <AS>1524</AS>
+            <AS>5936</AS>
+            <AS>178</AS>
+          </AS_PATH>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="1111">
+            <Optional/>
+            <Transitive/>
+            <Partial/>
+            <Extended/>
+          </Flags>
+          <Length>343</Length>
+          <TYPE>NEXT_HOP</TYPE>
+          <NEXT_HOP afi="IPv4">1.1.1.1</NEXT_HOP>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>MULTI_EXIT_DISC</TYPE>
+          <MULTI_EXIT_DISC>1905</MULTI_EXIT_DISC>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>LOCAL_PREFERENCE</TYPE>
+          <LOCAL_PREFERENCE>3678</LOCAL_PREFERENCE>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>ATOMIC_AGGREGATE</TYPE>
+          <ATOMIC_AGGREGATE/>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>AGGREGATOR</TYPE>
+          <AGGREGATOR>
+            <AS>3547</AS>
+            <ADDR afi="IPv4">1.2.2.2</ADDR>
+          </AGGREGATOR>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>COMMUNITY</TYPE>
+          <COMMUNITY>6891</COMMUNITY>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>ORIGINATOR_ID</TYPE>
+          <ORIGINATOR_ID>977</ORIGINATOR_ID>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>CLUSTER_LIST</TYPE>
+          <CLUSTER_LIST count="3">
+            <ID>CLUSTER_ID1</ID>
+            <ID>CLUSTER_ID2</ID>
+            <ID>CLUSTER_ID3</ID>
+          </CLUSTER_LIST>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>ADVERTISER</TYPE>
+          <ADVERTISER afi="IPv4">10.1.1.1</ADVERTISER>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>RCID_PATH</TYPE>
+          <RCID_PATH count="2">
+            <RCID>RCID1</RCID>
+            <RCID>RCID2</RCID>
+          </RCID_PATH>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>MP_REACH_NLRI</TYPE>
+          <MP_REACH_NLRI>
+            <AFI>IPv6</AFI>
+            <SUB_AFI>sub_afi</SUBS_AFI>
+            <NEXT_HOP afi="IPv4">10.2.2.2</NEXT_HOP>
+            <LENGTH>8890</LENGTH>
+            <SNPA_LIST count="3">
+              <SNPA>1.1.1.1</SNPA>
+              <SNPA>1.1.2.1</SNPA>
+              <SNPA>1.1.3.1</SNPA>
+            </SNPA_LIST>
+            <NLRI count="3">
+              <PREFIX label="NANN">2.2.2.1</PREFIX>
+              <PREFIX label="NANN">2.2.3.1</PREFIX>
+              <PREFIX>2.2.4.1</PREFIX>
+            </NLRI>
+          </MP_REACH_NLRI>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>MP_UNREACH_NLRI</TYPE>
+          <MP_UNREACH_NLRI>
+            <AFI>IPv6</AFI>
+            <SNPA_LIST count="3">
+              <SNPA>1.1.1.1</SNPA>
+              <SNPA>1.1.2.1</SNPA>
+              <SNPA>1.1.3.1</SNPA>
+            </SNPA_LIST>
+          </MP_UNREACH_NLRI>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>EXTENDED_COMMUNITIES</TYPE>
+          <EXTENDED_COMMUNITIES>
+            <FLAGS code="11">
+              <IANA/>
+              <TRANSITIVE/>
+            </FLAGS>
+            <DATA>ext_community_string</VALUE>
+          </EXTENDED_COMMUNITIES>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>AS4_PATH</TYPE>
+          <AS4_PATH type="AS_SEQUENCE">
+            <AS>5717</AS>
+            <AS>3336</AS>
+            <AS>2132</AS>
+          </AS4_PATH>
+        </ATTRIBUTE>
+        <ATTRIBUTE code="1">
+          <Flags code="0010"><Partial/></Flags>
+          <Length>343</Length>
+          <TYPE>AS4_AGGREGATOR</TYPE>
+          <AS4_AGGREGATOR>
+            <AS>5289</AS>
+            <ADDR afi="IPv4">10.1.1.2</ADDR>
+          </AS4_AGGREGATOR>
+        </ATTRIBUTE>
+      </PATH_ATTRIBUTE>
+      <NLRI count="3">
+        <PREFIX label="NANN">66.231.212.1</PREFIX>
+        <PREFIX label="NANN">66.186.174.2</PREFIX>
+        <PREFIX label="DANN">66.186.177.3</PREFIX>
+      </NLRI>
+    </UPDATE>
+  </ASCII_MSG>
+  <OCTETS length="3811" type="UPDATE">FFFFFFA..</OCTETS>
+</BGP_MESSAGE>
+
+]]></artwork>
+        </figure>
+      </section>
+
+      <section title="BGP Keepalive Message">
+        <t></t>
+
+        <figure>
+          <artwork><![CDATA[   
+<BGP_MESSAGE xmlns="urn:ietf:params:xml:ns:xfb-0.1" 
+            length="000723" version="0.1">
+  <TIME>
+    <TIMESTAMP>1230600402</TIMESTAMP>
+    <DATETIME>2008-12-30T01:26:42Z</DATETIME>
+    <PRECISION_TIME>805</PRECISION_TIME>
+  </TIME>
+  <PEERING>
+    <SRC_ADDR afi="IPv4">89.149.178.10</SRC_ADDR>
+    <DST_ADDR afi="IPv4">129.82.138.6</DST_ADDR>
+    <SRC_PORT>139</SRC_PORT>
+    <DST_PORT>139</DST_PORT>
+    <SRC_AS>3257</SRC_AS>
+    <DST_AS>6447</DST_AS>
+  </PEERING>
+  <ASCII_MSG>
+    <MARKER length="16">FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</MARKER>
+    <LENGTH>19</LENGTH>
+    <TYPE value="4">KEEPALIVE</TYPE>
+    <KEEPALIVE/>
+  </ASCII_MSG>
+  <OCTET_MSG>
+    <MARKER length="16">FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</MARKER>
+    <LENGTH>19</LENGTH>
+    <TYPE value="4">KEEPALIVE</TYPE>
+    <OCTETS length="19">FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF001304</OCTETS>
+  </OCTET_MSG>
+</BGP_MESSAGE>
+]]></artwork>
+        </figure>
+
+        <t></t>
+      </section>
+
+      <section title="BGP Notification Message">
+        <figure>
+          <artwork><![CDATA[ 
+<?xml version="1.0" encoding="utf-8"?>
+  <BGP_MESSAGE version="0.1" length="9999">
+    <TIME>
+    <TIMESTAMP>1228973922</TIMESTAMP>
+    <DATETIME>2008-12-09T00:00:00Z</DATETIME>
+    <PRECISION_TIME>328</PRECISION_TIME>
+  </TIME>
+  <PEERING>
+    <SRC_ADDR afi="IPv4">89.149.178.10</SRC_ADDR>
+    <DST_ADDR afi="IPv4">129.82.138.6</DST_ADDR>
+    <SRC_PORT>139</SRC_PORT>
+    <DST_PORT>139</DST_PORT>
+    <SRC_AS>3257</SRC_AS>
+    <DST_AS>6447</DST_AS>
+  </PEERING>
+  <ASCII_MSG>
+    <MARKER length="16">FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</MARKER>
+    <LENGTH>19</LENGTH>
+    <TYPE value="5">NOTIFICATION</TYPE>
+    <NOTIFICATION>
+      <CODE value="3">Bad Message Type</ERROR_CODE>
+      <SUBCODE value="7">AS Routing Loop</ERROR_SUBCODE>
+      <DATA>hexadecimal</DATA>
+    </NOTIFICATION>
+  </ASCII_MSG>
+  <OCTET_MSG>
+    <MARKER length="16">FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</MARKER>
+    <LENGTH>19</LENGTH>
+    <TYPE value="5">NOTIFICATION</TYPE>
+    <OCTETS length="19">FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF001304</OCTETS>
+  </OCTET_MSG>
+</BGP_MESSAGE>
+]]></artwork>
+        </figure>
+      </section>
+
+      <section title="Status Message">
+        <t></t>
+
+        <section title="Queue Status Message">
+          <t><figure>
+              <artwork><![CDATA[   
+<?xml version="1.0" encoding="utf-8"?>
+<BGP_MESSAGE xmlns="urn:ietf:params:xml:ns:xfb-0.1" 
+             length="001207" version="0.1">
+  <TIME>
+    <TIMESTAMP>1233804618</TIMESTAMP>
+    <DATETIME>2009-02-05T03:30:18Z</DATETIME>
+    <PRECISION_TIME>420</PRECISION_TIME>
+  </TIME>
+  <PEERING>
+    <SRC_ADDR>ipv4any</SRC_ADDR>
+    <SRC_PORT>4321</SRC_PORT>
+    <SRC_AS>6447</SRC_AS>
+    <DST_ADDR>65.49.129.101</DST_ADDR>
+    <DST_PORT>179</DST_PORT>
+    <DST_AS>3043</DST_AS>
+  </PEERING>
+  <STATUS_MSG>
+    <QUEUE_STATUS count="3">
+      <QUEUE>
+        <NAME>PeerQueue</NAME>
+        <ITEM max="19588" limit="30000">0</ITEM>
+        <WRITER max="5" limit="0">5</WRITER>
+        <READER max="1" limit="0">1</READER>
+        <PACING>
+          <COUNT max="0" limit="0">0</COUNT>
+          <WRITE_LIMIT max="0" limit="0">192</WRITE_LIMIT>
+        </PACING>
+      </QUEUE>
+      <QUEUE>
+        <NAME>LabelQueue</NAME>
+        <ITEM max="15637" limit="30000">11856</ITEM>
+        <WRITER max="3" limit="0">3</WRITER>
+        <READER max="1" limit="0">1</READER>
+        <PACING>
+          <COUNT max="0" limit="0">0</COUNT>
+          <WRITE_LIMIT max="0" limit="0">197</WRITE_LIMIT>
+        </PACING>
+      </QUEUE>
+      <QUEUE>
+        <NAME>XMLQueue</NAME>
+        <ITEM max="15476" limit="30000">13216</ITEM>
+        <WRITER max="1" limit="0">1</WRITER>
+        <READER max="1" limit="0">1</READER>
+        <PACING>
+          <COUNT max="0" limit="0">0</COUNT>
+          <WRITE_LIMIT max="0" limit="0">678</WRITE_LIMIT>
+        </PACING>
+      </QUEUE>
+    </QUEUE_STATUS>
+  </STATUS_MSG>
+</BGP_MESSAGE>',
+]]></artwork>
+            </figure></t>
+        </section>
+
+        <section title="Session Status Message">
+          <t><figure>
+              <artwork><![CDATA[  
+<BGP_MESSAGE xmlns="urn:ietf:params:xml:ns:xfb-0.1" 
+             length="003894" version="0.1">
+  <TIME>
+    <TIMESTAMP>1233804919</TIMESTAMP>
+    <DATETIME>2009-02-05T03:35:19Z</DATETIME>
+    <PRECISION_TIME>286</PRECISION_TIME>
+  </TIME>
+  <PEERING>
+    <SRC_ADDR>ipv4any</SRC_ADDR>
+    <SRC_PORT>4321</SRC_PORT>
+    <SRC_AS>6447</SRC_AS>
+    <DST_ADDR>65.49.129.101</DST_ADDR>
+    <DST_PORT>179</DST_PORT>
+    <DST_AS>3043</DST_AS>
+  </PEERING>
+  <STATUS_MSG>
+    <SESSION_STATUS count="3">
+      <SESSION>
+        <ADDR>65.49.129.101</ADDR>
+        <PORT>179</PORT>
+        <AS>3043</AS>
+        <STATE>6</STATE>
+        <OPTIME last_down="0" last_action="1233804913">64516</OPTIME>
+        <RECV_MESSAGE max="0" limit="0">10477308</RECV_MESSAGE>
+        <RESET max="0" limit="0">0</RESET>
+        <PREFIX max="0" limit="0">275527</PREFIX>
+        <ATTRIBUTE max="0" limit="0">47661</ATTRIBUTE>
+        <MEMORY_USAGE max="0" limit="0">13562636</MEMORY_USAGE>
+        <ANNOUNCEMENT max="0" limit="0">287747</ANNOUNCEMENT>
+        <DUP_ANNOUNCEMENT max="0" limit="0">29513778</DUP_ANNOUNCEMENT>
+        <SAME_PATH max="0" limit="0">4820</SAME_PATH>
+        <DIFF_PATH max="0" limit="0">92837</DIFF_PATH>
+        <WITHDRAWAL max="0" limit="0">12220</WITHDRAWAL>
+        <DUP_WITHDRAWAL max="0" limit="0">0</DUP_WITHDRAWAL>
+      </SESSION>
+      <SESSION>
+        <ADDR>205.167.76.241</ADDR>
+        <PORT>179</PORT>
+        <AS>10876</AS>
+        <STATE>6</STATE>
+        <OPTIME last_down="0" last_action="1233804918">64515</OPTIME>
+        <RECV_MESSAGE max="0" limit="0">10383216</RECV_MESSAGE>
+        <RESET max="0" limit="0">0</RESET>
+        <PREFIX max="0" limit="0">273496</PREFIX>
+        <ATTRIBUTE max="0" limit="0">47395</ATTRIBUTE>
+        <MEMORY_USAGE max="0" limit="0">12829036</MEMORY_USAGE>
+        <ANNOUNCEMENT max="0" limit="0">287055</ANNOUNCEMENT>
+        <DUP_ANNOUNCEMENT max="0" limit="0">29225124</DUP_ANNOUNCEMENT>
+        <SAME_PATH max="0" limit="0">2239</SAME_PATH>
+        <DIFF_PATH max="0" limit="0">59761</DIFF_PATH>
+        <WITHDRAWAL max="0" limit="0">13559</WITHDRAWAL>
+        <DUP_WITHDRAWAL max="0" limit="0">0</DUP_WITHDRAWAL>
+      </SESSION>
+      <SESSION>
+        <ADDR>89.149.178.10</ADDR>
+        <PORT>179</PORT>
+        <AS>3257</AS>
+        <STATE>6</STATE>
+        <OPTIME last_down="0" last_action="1233804918">64515</OPTIME>
+        <RECV_MESSAGE max="0" limit="0">245796</RECV_MESSAGE>
+        <RESET max="0" limit="0">0</RESET>
+        <PREFIX max="0" limit="0">271825</PREFIX>
+        <ATTRIBUTE max="0" limit="0">47476</ATTRIBUTE>
+        <MEMORY_USAGE max="0" limit="0">14745401</MEMORY_USAGE>
+        <ANNOUNCEMENT max="0" limit="0">290449</ANNOUNCEMENT>
+        <DUP_ANNOUNCEMENT max="0" limit="0">0</DUP_ANNOUNCEMENT>
+        <SAME_PATH max="0" limit="0">175480</SAME_PATH>
+        <DIFF_PATH max="0" limit="0">77044</DIFF_PATH>
+        <WITHDRAWAL max="0" limit="0">18624</WITHDRAWAL>
+        <DUP_WITHDRAWAL max="0" limit="0">0</DUP_WITHDRAWAL>
+      </SESSION>
+    </SESSION_STATUS>
+  </STATUS_MSG>
+</BGP_MESSAGE>]]></artwork>
+            </figure></t>
+        </section>
+      </section>
+    </section>
+
+    <section title="The XFB Schema ">
+      <t></t>
+
+      <figure>
+        <artwork><![CDATA[   
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="urn:ietf:params:xml:ns:xfb-0.1" 
+           xmlns="urn:ietf:params:xml:ns:xfb-0.1" 
+           xmlns:xfb="urn:ietf:params:xml:ns:xfb-0.1" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified">
+  <xs:annotation>
+    <xs:documentation>
+      XML Format for BGP Information v0.1, see RFC XXX
+      </xs:documentation>
+  </xs:annotation>
+  <xs:element name="BGP_MESSAGE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="xfb:TIME"/>
+        <xs:element ref="xfb:PEERING" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="xfb:ASCII_MSG" minOccurs="0" maxOccurs="1"/>
+        <xs:element ref="xfb:OCTET_MSG" minOccurs="0" maxOccurs="1"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="xfb:STATUS_MSG"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="version" 
+                    fixed="0.1" use="required"/>
+      <xs:attribute use="required" name="length" 
+                    type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TIME">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:long" name="TIMESTAMP"/>
+        <xs:element type="xs:dateTime" name="DATETIME" 
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element name="PRECISION_TIME" type="xs:long" 
+                    minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PEERING">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SRC_ADDR" type="xfb:address"/>
+        <xs:element name="SRC_PORT" type="xfb:port"/>
+        <xs:element type="xfb:asn" name="SRC_AS" 
+                    minOccurs="0" maxOccurs="1"/>
+        <xs:element type="xfb:address" name="DST_ADDR"/>
+        <xs:element name="DST_PORT" type="xfb:port"/>
+        <xs:element name="DST_AS" type="xfb:asn" 
+                    minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OCTET_MSG">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MARKER" type="xfb:octets"/>
+        <xs:element name="LENGTH" type="xs:nonNegativeInteger"/>
+        <xs:element name="TYPE" type="xfb:bgp_type"/>
+        <xs:element name="OCTETS" type="xfb:octets"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ASCII_MSG">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MARKER" type="xfb:octets"/>
+        <xs:element name="LENGTH" type="xs:nonNegativeInteger"/>
+        <xs:element name="TYPE" type="xfb:bgp_type"/>
+        <xs:choice>
+          <xs:element ref="xfb:OPEN"/>
+          <xs:element ref="xfb:UPDATE"/>
+          <xs:element ref="xfb:NOTIFICATION"/>
+          <xs:element ref="xfb:KEEPALIVE"/>
+          <xs:element ref="xfb:ROUTE_REFRESH"/>
+          <xs:element ref="xfb:CISCO_ROUTE_REFRESH"/>
+          <xs:element ref="xfb:UNKNOWN"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="STATUS_MSG">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="xfb:BGPMON"/>
+        <xs:choice>
+          <xs:element ref="xfb:SESSION_STATUS" 
+                      minOccurs="0" maxOccurs="1"/>
+          <xs:element ref="xfb:CHAIN_STATUS" 
+                      minOccurs="0" maxOccurs="1"/>
+          <xs:element minOccurs="0" maxOccurs="1" 
+                      ref="xfb:QUEUE_STATUS"/>
+          <xs:element ref="xfb:BGPMON_STATUS" 
+                      minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OPEN">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="VERSION" type="xs:string"/>
+        <xs:element name="SRC_AS" type="xfb:asn"/>
+        <xs:element name="HOLD_TIME" type="xs:nonNegativeInteger"/>
+        <xs:element name="SRC_BGP" type="xfb:address"/>
+        <xs:element name="OPT_PAR_LEN" type="xs:nonNegativeInteger"/>
+        <xs:element ref="xfb:OPT_PAR"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OPT_PAR">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" 
+                    minOccurs="0" ref="xfb:PARAMETER"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:nonNegativeInteger" 
+                    use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PARAMETER">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="LENGTH" type="xs:nonNegativeInteger"/>
+        <xs:element name="TYPE" type="xfb:par_type"/>
+        <xs:choice>
+          <xs:element ref="xfb:AUTHENTICATION"/>
+          <xs:element ref="xfb:CAPABILITIES"/>
+          <xs:element ref="xfb:OTHER"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="code" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AUTHENTICATION">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:hexBinary">
+          <xs:attribute name="code" type="xs:string"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CAPABILITIES">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="CAP">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CODE" type="xs:string"/>
+              <xs:element name="LENGTH" type="xs:long"/>
+              <xs:element name="DATA" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UNKNOWN" type="xs:hexBinary"/>
+  <xs:element name="UPDATE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="WITHDRAWN_LEN" type="xs:nonNegativeInteger"/>
+        <xs:element ref="xfb:WITHDRAWN"/>
+        <xs:element name="PATH_ATTRIBUTES_LEN" 
+                    type="xs:nonNegativeInteger"/>
+        <xs:element ref="xfb:PATH_ATTRIBUTES"/>
+        <xs:element ref="xfb:NLRI"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PATH_ATTRIBUTES">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" 
+                    ref="xfb:ATTRIBUTE"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ATTRIBUTE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="FLAGS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="OPTIONAL" 
+                          minOccurs="0" maxOccurs="1"/>
+              <xs:element name="TRANSITIVE" 
+                          minOccurs="0" maxOccurs="1"/>
+              <xs:element name="PARTIAL" minOccurs="0" maxOccurs="1"/>
+              <xs:element name="EXTENDED" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="code" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="LENGTH" type="xs:long"/>
+        <xs:element name="TYPE" type="xfb:attr_type"/>
+        <xs:choice>
+          <xs:element ref="xfb:ORIGIN"/>
+          <xs:element ref="xfb:AS_PATH"/>
+          <xs:element ref="xfb:NEXT_HOP"/>
+          <xs:element ref="xfb:MULTI_EXIT_DISC"/>
+          <xs:element ref="xfb:LOCAL_PREF"/>
+          <xs:element ref="xfb:ATOMIC_AGGREGATE"/>
+          <xs:element ref="xfb:AGGREGATOR"/>
+          <xs:element ref="xfb:COMMUNITIES"/>
+          <xs:element ref="xfb:ORIGINATOR_ID"/>
+          <xs:element ref="xfb:CLUSTER_LIST"/>
+          <xs:element ref="xfb:ADVERTISER"/>
+          <xs:element ref="xfb:RCID_PATH"/>
+          <xs:element ref="xfb:MP_REACH_NLRI"/>
+          <xs:element ref="xfb:MP_UNREACH_NLRI"/>
+          <xs:element ref="xfb:EXTENDED_COMMUNITIES"/>
+          <xs:element ref="xfb:AS4_PATH"/>
+          <xs:element ref="xfb:AS4_AGGREGATOR"/>
+          <xs:element ref="xfb:OTHER"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ORIGIN" type="xfb:origin_type"/>
+  <xs:element name="AS_PATH" type="xfb:as_path"/>
+  <xs:element name="NEXT_HOP" type="xfb:address"/>
+  <xs:element name="MULTI_EXIT_DISC" type="xs:integer"/>
+  <xs:element name="LOCAL_PREF" type="xs:integer"/>
+  <xs:element name="ATOMIC_AGGREGATE"/>
+  <xs:element name="AGGREGATOR" type="xfb:aggregator"/>
+  <xs:element name="COMMUNITIES">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NO_EXPORT"/>
+        <xs:element name="NO_ADVERTISE"/>
+        <xs:element name="NO_EXPORT_SUBCONFED"/>
+        <xs:element ref="xfb:COMMUNITY"/>
+        <xs:element ref="xfb:RESERVED_COMMUNITY"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="COMMUNITY" type="xfb:community_type"/>
+  <xs:element name="RESERVED_COMMUNITY" type="xfb:community_type"/>
+  <xs:element name="ORIGINATOR_ID" type="xs:integer"/>
+  <xs:element name="CLUSTER_LIST">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ID" type="xs:string" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ADVERTISER" type="xfb:address"/>
+  <xs:element name="RCID_PATH">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ID" type="xs:string" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MP_REACH_NLRI">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="AFI" type="xfb:afi_type"/>
+        <xs:element name="SAFI" type="xfb:safi_type"/>
+        <xs:element ref="xfb:NEXT_HOP"/>
+        <xs:element name="SNPA_LIST_LEN" type="xs:nonNegativeInteger"/>
+        <xs:element ref="xfb:SNPA_LIST"/>
+        <xs:element ref="xfb:NLRI"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SNPA_LIST">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SNPA" type="xfb:prefix" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MP_UNREACH_NLRI">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="AFI" type="xfb:afi_type"/>
+        <xs:element name="SAFI" type="xfb:safi_type"/>
+        <xs:element ref="xfb:WITHDRAWN"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EXTENDED_COMMUNITIES" type="xfb:octets_attribute"/>
+  <xs:element name="AS4_PATH" type="xfb:as_path"/>
+  <xs:element name="AS4_AGGREGATOR" type="xfb:aggregator"/>
+  <xs:element name="OTHER">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="OCTETS" type="xfb:octets"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WITHDRAWN" type="xfb:prefixes"/>
+  <xs:element name="NLRI" type="xfb:prefixes"/>
+  <xs:element name="NOTIFICATION">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CODE" type="xfb:error_type"/>
+        <xs:element name="SUBCODE" type="xfb:error_type"/>
+        <xs:element name="DATA" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KEEPALIVE"/>
+  <xs:element name="ROUTE_REFRESH">
+    <xs:complexType>
+      <xs:attributeGroup ref="xfb:attr_group_afi"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CISCO_ROUTE_REFRESH"/>
+  <xs:element name="BGPMON_STATUS">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="START"/>
+        <xs:element name="STOP"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QUEUE_STATUS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" 
+                    ref="xfb:QUEUE"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QUEUE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NAME" type="xs:string"/>
+        <xs:element name="ITEM" type="xfb:stat_type"/>
+        <xs:element name="WRITER" type="xfb:stat_type"/>
+        <xs:element name="READER" type="xfb:stat_type"/>
+        <xs:element name="PACING">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FLAG" type="xs:string"/>
+              <xs:element name="COUNT" type="xfb:stat_type"/>
+              <xs:element type="xfb:stat_type" name="WRITE_LIMIT"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CHAIN_STATUS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="xfb:CHAIN" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CHAIN">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="PEERING_STAT"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SESSION_STATUS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="xfb:SESSION" 
+                    minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:nonNegativeInteger"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SESSION">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="xfb:PEERING_STAT"/>
+        <xs:group ref="xfb:SESSION_STAT" 
+                  minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BGPMON">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ADDR" type="xfb:address"/>
+        <xs:element name="PORT" type="xfb:port"/>
+        <xs:element type="xfb:asn" name="AS" 
+                    minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:group name="PEERING_STAT">
+    <xs:sequence>
+      <xs:element type="xfb:address" name="ADDR"/>
+      <xs:element name="PORT" type="xfb:port" 
+                  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="AS" type="xfb:asn" 
+                  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="STATE" type="xs:integer" 
+                  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="STATE_CHANGE" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="OLD_STATE" type="xs:integer"/>
+            <xs:element name="NEW_STATE" type="xs:integer"/>
+            <xs:element name="REASON" type="xs:integer"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="OPTIME" type="xfb:time_type" 
+                  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="RECV_MESSAGE" type="xfb:stat_type" 
+                  minOccurs="0" maxOccurs="1"/>
+      <xs:element name="RESET" type="xfb:stat_type" 
+                  minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:group name="SESSION_STAT">
+    <xs:sequence>
+      <xs:element name="PREFIX"/>
+      <xs:element name="ATTRIBUTE"/>
+      <xs:element name="MEMORY_USAGE"/>
+      <xs:element name="ANNOUNCEMENT" type="xfb:stat_type"/>
+      <xs:element name="DUP_ANNOUNCEMENT" type="xfb:stat_type"/>
+      <xs:element name="SAME_PATH" type="xfb:stat_type"/>
+      <xs:element name="DIFF_PATH" type="xfb:stat_type"/>
+      <xs:element name="WITHDRAWAL" type="xfb:stat_type"/>
+      <xs:element name="DUP_WITHDRAWAL" type="xfb:stat_type"/>
+    </xs:sequence>
+  </xs:group>
+  <xs:complexType name="address">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attributeGroup ref="attr_group_afi"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="prefix">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="label" type="xs:string"/>
+        <xs:attributeGroup ref="attr_group_afi"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="prefixes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" 
+                  type="xfb:prefix" name="PREFIX"/>
+    </xs:sequence>
+    <xs:attribute name="count" type="xs:nonNegativeInteger"/>
+  </xs:complexType>
+  <xs:simpleType name="port">
+    <xs:restriction base="xs:integer">
+      <xs:maxInclusive value="65535"/>
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="asn">
+    <xs:restriction base="xs:nonNegativeInteger"/>
+  </xs:simpleType>
+  <xs:complexType name="as_path">
+    <xs:sequence>
+      <xs:element name="AS" type="xfb:asn" 
+                  minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="xfb:enum_as_path_type"/>
+  </xs:complexType>
+  <xs:complexType name="aggregator">
+    <xs:sequence>
+      <xs:element name="AS" type="xfb:asn"/>
+      <xs:element name="ADDR" type="xfb:address"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="octets">
+    <xs:simpleContent xml:base="xs:hexBinary">
+      <xs:extension base="xs:string">
+        <xs:attribute name="length" type="xs:nonNegativeInteger" 
+                      use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="bgp_type">
+    <xs:simpleContent>
+      <xs:extension base="enum_bgp_type">
+        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="origin_type">
+    <xs:simpleContent>
+      <xs:extension base="enum_origin_type">
+        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="par_type">
+    <xs:simpleContent>
+      <xs:extension base="enum_par_type">
+        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="afi_type">
+    <xs:simpleContent>
+      <xs:extension base="enum_afi_type">
+        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="safi_type">
+    <xs:simpleContent>
+      <xs:extension base="enum_safi_type">
+        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="attr_type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="error_type">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="community_type">
+    <xs:sequence>
+      <xs:element name="AS" type="xfb:asn"/>
+      <xs:element name="VALUE" type="xs:nonNegativeInteger"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="octets_attribute">
+    <xs:sequence>
+      <xs:element type="xfb:octets" name="OCTETS"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="enum_yes_no_type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="YES"/>
+      <xs:enumeration value="NO"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="enum_origin_type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="IGP"/>
+      <xs:enumeration value="BGP"/>
+      <xs:enumeration value="INCOMPLETE"/>
+      <xs:enumeration value="OTHER"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="enum_par_type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="AUTHENTICATION"/>
+      <xs:enumeration value="CAPABILITIES"/>
+      <xs:enumeration value="OTHER"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="enum_bgp_type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="OPEN"/>
+      <xs:enumeration value="UPDATE"/>
+      <xs:enumeration value="NOTIFICATION"/>
+      <xs:enumeration value="KEEPALIVE"/>
+      <xs:enumeration value="ROUTE_REFRESH"/>
+      <xs:enumeration value="CISCO_ROUTE_REFRESH"/>
+      <xs:enumeration value="UNKNOWN"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="enum_afi_type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="IPV4"/>
+      <xs:enumeration value="IPV6"/>
+      <xs:enumeration value="OTHER"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="enum_as_path_type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="as_sequence"/>
+      <xs:enumeration value="as_set"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="enum_safi_type">
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="NLRI_UNICAST"/>
+      <xs:enumeration value="NLRI_MULTICAST"/>
+      <xs:enumeration value="NLRI_MPLS"/>
+      <xs:enumeration value="OTHER"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="stat_type">
+    <xs:simpleContent>
+      <xs:extension base="xs:float">
+        <xs:attributeGroup ref="xfb:attr_group_stat"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="time_type">
+    <xs:simpleContent>
+      <xs:extension base="xs:float">
+        <xs:attributeGroup ref="xfb:attr_group_time"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:attributeGroup name="attr_group_stat">
+    <xs:attribute name="avg" use="optional" type="xs:float"/>
+    <xs:attribute name="sdv" use="optional" type="xs:float"/>
+    <xs:attribute name="min" type="xs:float" use="optional"/>
+    <xs:attribute name="max" type="xs:float" use="optional"/>
+    <xs:attribute name="accu" type="xs:float"/>
+    <xs:attribute name="limit" type="xs:float" use="optional"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attr_group_time">
+    <xs:attribute name="last_startup" use="optional" type="xs:long"/>
+    <xs:attribute name="last_down" use="optional" type="xs:long"/>
+    <xs:attribute name="last_action" use="optional" type="xs:long"/>
+  </xs:attributeGroup>
+  <xs:attributeGroup name="attr_group_afi">
+    <xs:attribute name="afi" type="xfb:enum_afi_type" use="optional"/>
+    <xs:attribute name="afi_value" type="xs:nonNegativeInteger" 
+                  use="optional"/>
+    <xs:attribute name="safi" type="xfb:enum_safi_type" 
+                  use="optional"/>
+    <xs:attribute name="safi_value" type="xs:nonNegativeInteger" 
+                  use="optional"/>
+  </xs:attributeGroup>
+</xs:schema>
+
+]]></artwork>
+      </figure>
+    </section>
+
+    <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
+
+    <?rfc needLines="8" ?>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+      <t></t>
+    </section>
+
+    <!-- Possibly a 'Contributors' section ... -->
+
+    <section anchor="IANA" title="IANA Considerations">
+      <t>This document uses URNs to describe an XML namespace and schema. Two
+      registrations are needed: (1) registration for the XFB namespace:
+      urn:ietf:params:xml:ns:xfb-0.1 and (2) registration for the XFB XML
+      schema: urn:ietf:params:xml:schema:xfb-0.1</t>
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+      <t>The XFB format untilizes XML to flexibly represent BGP information.
+      The XFB document structure and fields are only descriptive and do not
+      create additional security risks.</t>
+    </section>
+  </middle>
+
+  <!--  *****BACK MATTER ***** -->
+
+  <back>
+    <!-- References split into informative and normative -->
+
+    <!-- There are 2 ways to insert reference entries from the citation libraries:
+     1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
+     2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
+        (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+
+     Both are cited textually in the same manner: by using xref elements.
+     If you use the PI option, xml2rfc will, by default, try to find included files in the same
+     directory as the including file. You can also define the XML_LIBRARY environment variable
+     with a value containing a set of directories to search.  These can be either in the local
+     filing system or remote ones accessed by http (http://domain/dir/... ).-->
+
+    <references title="Normative References">
+      <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
+
+      &RFC2119;
+
+      &RFC4271;
+
+      &RFC4760;
+
+      &RFC2918;
+
+      &RFC1997;
+
+      &RFC4893;
+
+      &I-D.ietf-grow-mrt;
+    </references>
+
+    <references title="Informative References">
+      <!-- Here we use entities that we defined at the beginning. -->
+
+      <reference anchor="Rosen">
+        <front>
+          <title>draft-ramachandra-bgp-ext-communities-00.txt</title>
+
+          <author initials="Eric" surname="Rosen">
+            <organization></organization>
+          </author>
+
+          <date month="March" year="1999" />
+        </front>
+      </reference>
+
+      <!-- A reference written by an organization not a person. -->
+    </references>
+
+    <section anchor="app-additional" title="Storage Size Comparison">
+      <t>Experiment results are promising using the default compression
+      parameters for bzip2. As shown in the table below, the uncompressed XFB
+      require much more space, but compresstion can greatly reduce the storage space.
+      Compared with <xref target="I-D.ietf-grow-mrt">MRT</xref> binary
+      format, XFB consumes the doulble storage space. This table shows the size
+      of data used in the above comparison, using MRT as the baseline.</t>
+
+      <texttable>
+        <preamble></preamble>
+
+        <ttcol>format</ttcol>
+        <ttcol>umcompressed(MB)</ttcol>
+        <ttcol>ratio</ttcol>
+        <ttcol>compressed(MB)</ttcol>
+        <ttcol>ratio</ttcol>
+
+        <c>XFB(ascii)</c>
+        <c>12,564</c>
+        <c>14.87</c>
+        <c>211</c>
+        <c>1.99</c>
+
+        <c>XFB(ascii+octet)</c>
+        <c>15,039</c>
+        <c>17.80</c>
+        <c>2.74</c>
+        <c>1.00</c>
+
+        <c>bgpdump</c>
+        <c>2,315</c>
+        <c>2.74</c>
+        <c>103</c>
+        <c>0.97</c>
+
+        <c>MRT</c>
+        <c>845</c>
+        <c>1.00</c>
+        <c>106</c>
+        <c>1.00</c>
+
+        <postamble>Storage Size Comparison</postamble>
+      </texttable>
+    </section>
+
+    <!-- Change Log
+
+v00 2006-03-15  EBD   Initial version
+
+v01 2006-04-03  EBD   Moved PI location back to position 1 -
+                      v3.1 of XMLmind is better with them at this location.
+v02 2007-03-07  AH    removed extraneous nested_list attribute,
+                      other minor corrections
+v03 2007-03-09  EBD   Added comments on null IANA sections and fixed heading capitalization.
+                      Modified comments around figure to reflect non-implementation of
+                      figure indent control.  Put in reference using anchor="DOMINATION".
+                      Fixed up the date specification comments to reflect current truth.
+v04 2007-03-09 AH     Major changes: shortened discussion of PIs,
+                      added discussion of rfc include.
+v05 2007-03-10 EBD    Added preamble to C program example to tell about ABNF and alternative 
+                      images. Removed meta-characters from comments (causes problems).  -->
+  </back>
+</rfc>
+<!-- vim: sw=2 ts=2 sts=2 expandtab
+-->

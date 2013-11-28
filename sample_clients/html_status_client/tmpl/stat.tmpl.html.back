@@ -1,0 +1,254 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- DW6 -->
+<head>
+<!-- Copyright 2005 Macromedia, Inc. All rights reserved. -->
+<title>BGP Monitoring System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="/mm_health_nutr.css" type="text/css" />
+<script language="JavaScript" type="text/javascript">
+<!--
+//--------------- LOCALIZEABLE GLOBALS ---------------
+var d=new Date();
+var monthname=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+//Ensure correct for language. English is "January 1, 2004"
+var TODAY = monthname[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+//---------------   END LOCALIZEABLE   ---------------
+
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.STYLE1 {color: #993300}
+.STYLE2 {font-size: 12px}
+.STYLE7 {
+	color: #5C743D;
+	font-weight: bold;
+	font-size: 22px;
+}
+.STYLE14 {
+	color: #D5EDB3;
+	font-size: 14px;
+}
+.STYLE15 {color: #FF0000}
+.STYLE20 {color: #660099; font-weight: bold; font-size: 18px; }
+.STYLE25 {color: #CC0000; font-weight: bold; font-size: 22px; }
+.STYLE26 {color: #660099; font-weight: bold; font-size: 14px; }
+.STYLE27 {color: #5C743D; font-weight: bold; font-size: 18px; }
+.STYLE28 {color: #330000; font-size: 14px; }
+-->
+</style>
+</head>
+<body bgcolor="#F4FFE4">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  
+  <tr bgcolor="#D5EDB3">
+    <td colspan="3"><img src="BGPMon_log_new.jpg" width="494" height="195" /></td>
+    <td height="51" align="left" valign="middle" nowrap="nowrap" id="logo"><div align="left">
+      <div>
+        <div align="left" class="STYLE2">
+          <p class="STYLE7">BGP Monitoring System</p>
+          <p class="STYLE1"><strong>Next Generation Software Dedicated to BGP Monitoring</strong></p>
+        </div>
+      </div>
+    </div></td>
+    <td height="51" align="left" valign="middle" nowrap="nowrap" bgcolor="#D5EDB3" id="logo"><img src="180px-NSF.svg.png" width="164" height="161" /></td>
+  </tr>
+
+
+  <tr>
+    <td colspan="5" bgcolor="#5C743D"><img src="mm_spacer.gif" alt="" width="1" height="2" border="0" /></td>
+  </tr>
+
+  <tr>
+    <td colspan="5" bgcolor="#99CC66" background="mm_dashed_line.gif"><img src="mm_dashed_line.gif" alt="line decor" width="4" height="3" border="0" /></td>
+  </tr>
+
+  <tr bgcolor="#99CC66">
+  	<td height="20" colspan="5" bgcolor="#99CC66" id="dateformat">&nbsp;&nbsp;<script language="JavaScript" type="text/javascript">
+      document.write(TODAY);	</script>	</td>
+  </tr>
+  <tr bgcolor="#D5EDB3">
+    <td colspan="5" background="mm_dashed_line.gif"><img src="mm_dashed_line.gif" alt="line decor" width="4" height="3" border="0" /></td>
+  </tr>
+
+  <tr>
+    <td colspan="5" bgcolor="#5C743D"><img src="mm_spacer.gif" alt="" width="1" height="2" border="0" /></td>
+  </tr>
+
+ <tr>
+    <td width="166" valign="top" bordercolor="#0000FF" bgcolor="#5C743D">
+	<table border="0" cellspacing="0" cellpadding="0" width="165" id="navigation">
+        <tr>
+          <td width="165">&nbsp;<br />
+		 &nbsp;<br /></td>
+        </tr>
+        <tr>
+          <td width="165"><a href="index.html" class="navText">home</a></td>
+        </tr>
+        <tr>
+          <td width="165"><a href="design.html" class="navText">design</a></td>
+        </tr>
+        
+        <tr>
+          <td bgcolor="#99CC66"><a href="stat_v6.html" class="navText">live data</a></td>
+        </tr>
+        <tr>
+          <td width="165"><a href="people.html" class="navText">people</a></td>
+        </tr>
+        <tr>
+          <td width="165"><a href="userguide.html" class="navText">user guide</a></td>
+        </tr>
+        <tr>
+          <td height="34"><a href="download.html" class="navText">downloads</a></td>
+        </tr>
+        <tr>
+          <td><a href="publications.html" class="navText">publications</a></td>
+        </tr>
+        <tr>
+          <td width="165"><a href="contactus.html" class="navText">contact us </a></td>
+        </tr>
+      </table>
+ 	<p>?<br />
+ 	    <strong>&nbsp;<br />
+        </strong></p>
+ 	<p><strong><span class="STYLE14">Other Links </span></strong><br />
+ 	  &nbsp;<br />
+ 	  <a href="http://wiki.netsec.colostate.edu/index.php/Main_Page"></a>
+ 	  <select name="menu1" size="1" class="subHeader" onchange="MM_jumpMenu('parent',this,0)">
+ 	    <option selected="selected">None</option>
+ 	    <option value="http://www.netsec.colostate.edu">Netsec home</option>
+ 	    <option value="http://wiki.netsec.colostate.edu/index.php/Main_Page">Internal Wiki</option>
+ 	    <option value="http://www.routeviews.org/">RouteViews</option>
+ 	    </select>
+    </p></td>
+    <td width="50"><img src="mm_spacer.gif" alt="" width="50" height="1" border="0" /></td>
+    <td colspan="2" valign="top"><img src="mm_spacer.gif" alt="" width="305" height="1" border="0" /><br />
+	&nbsp;<br />
+	&nbsp;<br />
+	<table width="882" height="195" border="0" cellpadding="0" cellspacing="0" bordercolor="#660099">
+        <tr>
+          <td height="65" class="pageName"><p class="STYLE7"><strong>R</strong><strong>ibs and Updates  Download <a href="http://bgpmon.netsec.colostate.edu/bgpdata/">here</a> !</strong></p>
+          <p class="STYLE25">---------------------------------------------------------------------------------------</p></td>
+        </tr>
+        <tr>
+          <td width="882" height="65" class="pageName"><p align="left" class="STYLE27">Statistics Report(refreshed every 5 mins) </p>
+            <p align="left" class="STYLE26">1. BGP Peers </p>
+            <table border="1" cellpadding="0" cellspacing="0" bordercolor="#666666">
+              <tr>
+                <th width="57"><span class="STYLE28">IP</span></th>
+                <th width="57"><span class="STYLE28">PORT</span></th>
+                <th width="62"><span class="STYLE28">AS</span></th>
+                <th width="88"><span class="STYLE28">Status</span></th>
+                <th width="92"><span class="STYLE28">Uptime</span></th>
+                <th width="139"><span class="STYLE28">LastDownTime</span></th>
+                <th width="92"><span class="STYLE28">#MsgRcvd</span></th>
+                <th width="89"><span class="STYLE28">#Reset</span></th>
+                <th width="92"><span class="STYLE28">#Prefix</span></th>
+                <th width="92"><span class="STYLE28">#Attribue</span></th>
+                <th width="92"><span class="STYLE28">Memory(k)</span></th>
+                <th width="223"><span class="STYLE28">Detail</span></th>
+              </tr>           
+[%  FOREACH session IN SESSIONS.DATA %]
+	<tr>
+		<td align=center>[% session.addr %]</td>
+		<td align=center>[% session.port %]</td>
+		<td align=center>[% session.as   %]</td>
+		<td><center>[%IF session.state == 6 %]<img src= "green.png" alt="OK"/>[% ELSIF session.state==7 %]<img src= "qua.jpg" width="20" alt="QUAGGA"/>[% ELSE %]<img src= "red.png" alt="DOWN"/>[% END %]</center></td>
+		<td align=center>[% session.optime.current_fmt %]&nbsp;</td>
+		<td align=center>[% session.optime.last_down_fmt %]&nbsp;</td>
+		<td align=center>[% session.recv.current %]&nbsp;</td>
+		<td align=center>[% session.reset.current %]&nbsp;</td>
+		<td align=center>[% session.prefix.current %]&nbsp;</td>
+		<td align=center>[% session.attribute.current %]&nbsp;</td>
+		<td align=center>[% session.memory.current_kb %]&nbsp;</td>
+		[% session_str = session.addr _ "_" _ session.port %]
+		<td align=center><a href="pic/[% PIC.SESSION_STAT.$session_str %]?[% RAND %]">detail</a></td>
+	</tr>
+[% END %]
+</table>
+            <p align="left" class="STYLE20">&nbsp;</p>
+            <p align="left" class="STYLE26">2. External Peer BGPMons </p>
+            <table border="1" cellpadding="0" cellspacing="0" bordercolor="#666666">
+	              <tr>
+	                <th width="57"><span class="STYLE28">IP</span></th>
+	                <th width="62"><span class="STYLE28">Port</span></th>
+	                <th width="88"><span class="STYLE28">Status</span></th>
+	                <th width="92"><span class="STYLE28">#MsgRcvd</span></th>
+	                <th width="92"><span class="STYLE28">Uptime</span></th>
+	                <th width="139"><span class="STYLE28">LastDownTime</span></th>
+	                <th width="89"><span class="STYLE28">#Reset</span></th>
+	              </tr>              
+[%  FOREACH chain IN CHAINS.DATA %]
+	<tr>
+		<td align=center>[% chain.addr %]</td>
+		<td align=center>[% chain.port %]</td>
+		<td><center>[%IF chain.state == "3" %]<img src= "green.png" alt="OK"/>[% ELSE %]<img src= "red.png" alt="DOWN"/>[% END %]</center></td>
+		<td align=center>[% chain.recv.current %]</td>
+		<td align=center>[% chain.optime.current_fmt %]&nbsp;</td>
+		<td align=center>[% chain.optime.last_down_fmt %]&nbsp;</td>
+		<td align=center>[% chain.reset.current %]</td>
+	</tr>
+[% END %]
+	      </table>
+ 		  <p align="left" class="STYLE26">&nbsp; </p> 
+          <p align="left" class="STYLE26">3. Internal Queues Status </p></td>
+		</tr>
+        <tr>
+          <td height="65" class="pageName">
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="#666666">
+	              <tr>
+	                <th width="108"><p class="STYLE28">Queue Name</p></th>
+	                <th width="108"><p class="STYLE28">Dampening Detail</p></th>
+	                <th width="108"><p class="STYLE28">Capacity</p></th>
+	                <th width="57"><span class="STYLE28">Current</span></th>
+	                <th width="62"><span class="STYLE28">Max</span></th>
+	                <th width="92"><span class="STYLE28">Subscribers</span></th>
+	              </tr>   
+[%  FOREACH queue IN QUEUES.DATA %]
+	<tr>
+		<td align=center><a href="pic/[% PIC.QUEUE_USAGE %]?[% RAND %]">[% queue.name %]</a></td>
+		<td align=center><a href="pic/[% PIC.QUEUE_DAMPING.${queue.name} %]?[% RAND %]">detail</a></td>
+		<td align=center>[% queue.item.limit %]</td>
+		<td align=center>[% queue.item.current %] ([% queue.item.current_usage %]%)</td>
+		<td align=center>[% queue.item.max %] ([% queue.item.max_usage %]%)</td>
+		<td align=center>[% queue.reader.current %]</td>
+	</tr>
+[% END %]
+	</table>
+	</td>
+        </tr>
+      </table>
+	<p align="left">&nbsp; </p>
+	<p align="left"><span class="STYLE25">-----------------------------------------------------------------------------------------------------------------------------</span></p>    
+    <p align="left"> <strong>Acknowledgements</strong></p>
+	<ul>
+      <p align="left"> </p>
+	  <table height="110">
+	    <tbody>
+	      <tr>
+	        <td align="left" height="100" width="100"><a href="http://www.nsf.gov/"><img src="nsf.JPG" width="108" height="98" border="0" /></a></td>
+	        <td>This work is funded as under NSF Community Research Infrastructure<br />
+	             (CRI): Collaborative Research: Building the Next-Generation Global<br />   Routing Monitoring System (NSF 0551725)<br />
+	          <a href="http://www.nsf.gov/"> National Science Foundation</a></td>
+	        </tr>
+	      </tbody>
+	    </table>
+	  </p>
+	  </ul>
+	<br />
+	&nbsp;<br />	</td>
+  </tr>
+  <tr>
+    <td width="166">&nbsp;</td>
+    <td width="50">&nbsp;</td>
+    <td width="282">&nbsp;</td>
+    <td width="559">&nbsp;</td>
+    <td width="369">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

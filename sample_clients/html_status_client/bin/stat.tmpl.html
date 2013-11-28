@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>BGP Monitoring System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<style type="text/css">
+<!--
+.STYLE1 {color: #993300}
+.STYLE2 {font-size: 12px}
+.STYLE7 {
+	color: #5C743D;
+	font-weight: bold;
+	font-size: 22px;
+}
+.STYLE14 {
+	color: #D5EDB3;
+	font-size: 14px;
+}
+.STYLE15 {color: #FF0000}
+.STYLE20 {color: #660099; font-weight: bold; font-size: 18px; }
+.STYLE25 {color: #CC0000; font-weight: bold; font-size: 22px; }
+.STYLE26 {color: #000000; font-weight: bold; font-size: 14px; }
+.STYLE27 {color: #5C743D; font-weight: bold; font-size: 18px; }
+.STYLE28 {color: #330000; font-size: 14px; }
+-->
+</style>
+</head>
+
+<table width="882" height="195" border="0" cellpadding="0" cellspacing="0" bordercolor="#660099">
+       <tr>
+          <td width="882" height="65" class="pageName"><p align="left" class="STYLE27">Statistics Report (Last generated on [% DATESTAMP %] at [% TIMESTAMP %]) </p>
+            <p align="left" class="STYLE26">1. BGP Peers </p>
+            <table border="1" cellpadding="0" cellspacing="0" bordercolor="#666666">
+              <tr>
+                <th width="57"><span class="STYLE28">IP</span></th>
+                <th width="57"><span class="STYLE28">PORT</span></th>
+                <th width="62"><span class="STYLE28">AS</span></th>
+                <th width="88"><span class="STYLE28">Status</span></th>
+                <th width="92"><span class="STYLE28">Uptime</span></th>
+<!--            <th width="139"><span class="STYLE28">LastDownTime</span></th>-->
+                <th width="92"><span class="STYLE28">#MsgRcvd</span></th>
+                <th width="89"><span class="STYLE28">#Reset</span></th>
+                <th width="92"><span class="STYLE28">#Prefix</span></th>
+                <th width="92"><span class="STYLE28">#Attribue</span></th>
+                <th width="92"><span class="STYLE28">Memory(k)</span></th>
+                <th width="223"><span class="STYLE28">Detail</span></th>
+              </tr>           
+[%  FOREACH session IN SESSIONS.DATA %]
+	<tr>
+		<td align=center>[% session.addr %]</td>
+		<td align=center>[% session.port %]</td>
+		<td align=center>[% session.as   %]</td>
+		<td><center>[%IF session.state == 6 %]<img src= "green.png" alt="OK"/>[% ELSIF session.state==7 %]<img src= "qua.jpg" width="20" alt="QUAGGA"/>[% ELSE %]<img src= "red.png" alt="DOWN"/>[% END %]</center></td>
+
+<!-- session.uptime.current_fmt -->
+		[%IF session.state == 6 %]<td align=center>[% session.uptime.current_fmt %]&nbsp;</td>[% ELSIF session.state==7 %]<td align=center>N/A&nbsp;</td>[% END %]
+<!--		<td align=center>[% session.uptime.last_down_fmt %]&nbsp;</td>-->
+		<td align=center>[% session.recv.current %]&nbsp;</td>
+		<td align=center>[% session.reset.current %]&nbsp;</td>
+		<td align=center>[% session.prefix.current %]&nbsp;</td>
+		<td align=center>[% session.attribute.current %]&nbsp;</td>
+		<td align=center>[% session.memory.current_kb %]&nbsp;</td>
+		[% session_str = session.addr _ "_" _ session.port %]
+		<td align=center><a href="pic/[% PIC.SESSION_STAT.$session_str %]?[% RAND %]">detail</a></td>
+	</tr>
+[% END %]
+</table>
+
+            <p align="left" class="STYLE20">&nbsp;</p>
+            <p align="left" class="STYLE26">2. MRT </p>
+            <table border="1" cellpadding="0" cellspacing="0" bordercolor="#666666">
+              <tr>
+                <th width="57"><span class="STYLE28">IP</span></th>
+                <th width="57"><span class="STYLE28">PORT</span></th>
+                <th width="62"><span class="STYLE28">AS</span></th>
+                <th width="88"><span class="STYLE28">Status</span></th>
+                <th width="92"><span class="STYLE28">Uptime</span></th>
+<!--            <th width="139"><span class="STYLE28">LastDownTime</span></th>-->
+                <th width="92"><span class="STYLE28">#MsgRcvd</span></th>
+                <th width="89"><span class="STYLE28">#Reset</span></th>
+                <th width="92"><span class="STYLE28">#Prefix</span></th>
+                <th width="92"><span class="STYLE28">#Attribue</span></th>
+                <th width="92"><span class="STYLE28">Memory(k)</span></th>
+                <!--<th width="223"><span class="STYLE28">Detail</span></th>-->
+              </tr>           
+[%  FOREACH mrt IN MRTS.DATA %]
+	<tr>
+		<td align=center>[% mrt.addr %]</td>
+		<td align=center>[% mrt.port %]</td>
+		<td align=center>[% mrt.as   %]</td>
+		<td><center>[%IF mrt.state == 6 %]<img src= "green.png" alt="OK"/>[% ELSIF mrt.state==7 %]<img src= "qua.jpg" width="20" alt="QUAGGA"/>[% ELSE %]<img src= "red.png" alt="DOWN"/>[% END %]</center></td>
+	
+		[%IF mrt.state == 6 %]<td align=center>[% mrt.uptime.current_fmt %]&nbsp;</td>[% ELSIF mrt.state==7 %]<td align=center>N/A&nbsp;</td>[% END %]
+<!--		<td align=center>[% mrt.uptime.last_down_fmt %]&nbsp;</td>-->
+		<td align=center>[% mrt.recv.current %]&nbsp;</td>
+		<td align=center>[% mrt.reset.current %]&nbsp;</td>
+		<td align=center>[% mrt.prefix.current %]&nbsp;</td>
+		<td align=center>[% mrt.attribute.current %]&nbsp;</td>
+		<td align=center>[% mrt.memory.current_kb %]&nbsp;</td>
+		[% mrt_str = mrt.addr _ "_" _ mrt.port %]
+		<!--<td align=center><a href="pic/[% PIC.MRT_STAT.$mrt_str %]?[% RAND %]">detail</a></td>-->
+	</tr>
+[% END %]
+</table>
+
+
+            <p align="left" class="STYLE20">&nbsp;</p>
+            <p align="left" class="STYLE26">3. External Peer BGPMons </p>
+            <table border="1" cellpadding="0" cellspacing="0" bordercolor="#666666">
+	              <tr>
+	                <th width="57"><span class="STYLE28">IP</span></th>
+	                <th width="62"><span class="STYLE28">Port</span></th>
+	                <th width="88"><span class="STYLE28">Status</span></th>
+	                <th width="92"><span class="STYLE28">#MsgRcvd</span></th>
+	                <th width="92"><span class="STYLE28">Uptime</span></th>
+	                <th width="139"><span class="STYLE28">LastDownTime</span></th>
+	                <th width="89"><span class="STYLE28">#Reset</span></th>
+	              </tr>              
+[%  FOREACH chain IN CHAINS.DATA %]
+	<tr>
+		<td align=center>[% chain.addr %]</td>
+		<td align=center>[% chain.port %]</td>
+		<td><center>[%IF chain.state == "3" %]<img src= "green.png" alt="OK"/>[% ELSE %]<img src= "red.png" alt="DOWN"/>[% END %]</center></td>
+		<td align=center>[% chain.recv.current %]</td>
+		<td align=center>[% chain.uptime.current_fmt %]&nbsp;</td>
+		<td align=center>[% chain.uptime.last_down_fmt %]&nbsp;</td>
+		<td align=center>[% chain.reset.current %]</td>
+	</tr>
+[% END %]
+	      </table>
+ 		  <p align="left" class="STYLE26">&nbsp; </p> 
+          <p align="left" class="STYLE26">4. Internal Queues Status </p></td>
+		</tr>
+        <tr>
+          <td height="65" class="pageName">
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="#666666">
+	              <tr>
+	                <th width="108"><p class="STYLE28">Queue Name</p></th>
+	                <th width="108"><p class="STYLE28">Dampening Detail</p></th>
+	                <th width="108"><p class="STYLE28">Capacity</p></th>
+	                <th width="57"><span class="STYLE28">Current</span></th>
+	                <th width="62"><span class="STYLE28">Max</span></th>
+	                <th width="92"><span class="STYLE28">Subscribers</span></th>
+	              </tr>   
+[%  FOREACH src IN QUEUES.keys %]
+  [%  FOREACH queue IN QUEUES.${src}.DATA %]
+	<tr>
+		<td align=center><a href="pic/[% PIC.QUEUE_USAGE.${src} %]?[% RAND %]">[% queue.name %]</a></td>
+		<td align=center><a href="pic/[% PIC.QUEUE_DAMPING.${src}.${queue.name} %]?[% RAND %]">detail</a></td>
+		<td align=center>[% queue.item.limit %]</td>
+		<td align=center>[% queue.item.current %] ([% queue.item.current_usage %]%)</td>
+		<td align=center>[% queue.item.max %] ([% queue.item.max_usage %]%)</td>
+		<td align=center>[% queue.reader.current %]</td>
+	</tr>
+  [% END %]
+[% END %]
+	</table>
+	</td>
+        </tr>
+      </table>
+	<p align="left">&nbsp; </p>
+
+</table>
+</body>
+</html>

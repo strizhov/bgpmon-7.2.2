@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!-- This template is for creating an Internet Draft using xml2rfc,
+     which is available here: http://xml.resource.org. -->
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+     There has to be one entity for each item to be referenced. 
+     An alternate method (rfc include) is described in the references. -->
+
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
+<!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
+<!ENTITY RFC2858 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2858.xml">
+<!ENTITY RFC2918 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2918.xml">
+<!ENTITY RFC1997 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1997.xml">
+<!ENTITY RFC4456 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4456.xml">
+<!ENTITY RFC1863 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1863.xml">
+<!ENTITY RFC2283 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2283.xml">
+<!ENTITY RFC4893 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4893.xml">
+<!ENTITY RFC1700 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.1700.xml">
+<!ENTITY RFC2629 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2629.xml">
+<!ENTITY RFC3552 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3552.xml">
+<!ENTITY I-D.narten-iana-considerations-rfc2434bis SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.narten-iana-considerations-rfc2434bis.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs), 
+     please see http://xml.resource.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
+     (Here they are set differently than their defaults in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="5"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space 
+     (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?>
+<!-- keep one blank line between list items -->
+<!-- end of list of popular I-D processing instructions -->
+<rfc category="info" docName="draft-ietf-bgp-xml-01" ipr="full3978">
+  <!-- category values: std, bcp, info, exp, and historic
+     ipr values: full3667, noModification3667, noDerivatives3667
+     you can add the attributes updates="NNNN" and obsoletes="NNNN" 
+     they will automatically be output with "(if approved)" -->
+
+  <!-- ***** FRONT MATTER ***** -->
+
+  <front>
+    <!-- The abbreviated title is used in the page header - it is only necessary if the 
+         full title is longer than 39 characters -->
+
+    <title abbrev="BGP in XML">BGP routing information in XML format</title>
+
+    <!-- add 'role="editor"' below for the editors if appropriate -->
+
+    <!-- Another author who claims to be an editor -->
+
+   <author fullname="William Springer" initials="W.M." role="editor"
+            surname="Springer">
+      <organization>CSU-Netsec Group</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <city>Fort Collins</city>
+
+          <region>CO</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <facsimile></facsimile>
+
+        <email>wmspring@cs.colostate.edu</email>
+
+        <uri></uri>
+      </address>
+    </author>
+
+
+
+    <author fullname="He Yan" initials="H" role="editor" surname="Yan">
+      <organization>CSU-Netsec Group</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <city>Fort Collins</city>
+
+          <region>CO</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <facsimile></facsimile>
+
+        <email>yanhe@cs.colostate.edu</email>
+
+        <uri></uri>
+      </address>
+    </author>
+
+    <author fullname="Daniel F. Massey" initials="D.F." role="editor"
+            surname="Massey">
+      <organization>CSU-Netsec Group</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <!-- Reorder these if your country does things differently -->
+
+          <city>Fort Collins</city>
+
+          <region>CO</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <email>massey@cs.colostate.edu</email>
+
+        <!-- uri and facsimile elements may also be added -->
+      </address>
+    </author>
+
+    <author fullname="Dave Matthews" initials="D" role="editor"
+            surname="Matthews">
+      <organization>CSU-Netsec Group</organization>
+
+      <address>
+        <postal>
+          <street></street>
+
+          <city>Fort Collins</city>
+
+          <region>CO</region>
+
+          <code></code>
+
+          <country>US</country>
+        </postal>
+
+        <phone></phone>
+
+        <facsimile></facsimile>
+
+        <email>dvmtthws@cs.colostate.edu</email>
+
+        <uri></uri>
+      </address>
+    </author>
+    <date day="15" month="July" year="2008" />
+
+    <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
+         in the current day for you. If only the current year is specified, xml2rfc will fill 
+	 in the current day and month for you. If the year is not the current one, it is 
+	 necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the 
+	 purpose of calculating the expiry date).  With drafts it is normally sufficient to 
+	 specify just the year. -->
+
+    <!-- Meta-data Declarations -->
+
+    <area>General</area>
+
+    <workgroup>IETF</workgroup>
+
+    <!-- WG name at the upperleft corner of the doc,
+         IETF is fine for individual submissions.  
+	 If this element is not present, the default is "Network Working Group",
+         which is used by the RFC Editor as a nod to the history of the IETF. -->
+
+    <keyword>BGP routing information, XML,</keyword>
+
+    <!-- Keywords will be incorporated into HTML output
+         files in a meta tag but they have no effect on text or nroff
+         output. If you submit your draft to the RFC Editor, the
+         keywords will be used for the search engine. -->
+
+    <abstract>
+      <t>This document describes the XML format for BGP routing information (XFB).
+      It can be used to describe both BGP messages and BGP control information. Compared with MRT, XFB is easily extensible, human
+      and machine-readable and a common interface to a variety of tools.</t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+      <t>BGP routing information is an essential resource for both researchers
+      and operation communities in Internet routing. In order to collect and aggregate this
+	information, it is important to define a public format to encapsulate, export, and 
+	archive it. But what are the requirements for this format?</t>
+
+      <t><list style="symbols">
+          <t>human and machine-readable</t>
+
+          <t>easily accessible</t>
+
+          <t>suitable for further processing by existing tools</t>
+
+          <t>easy to add user annotations</t>
+
+          <t>easy to reconstuct raw BGP messages / ability to replay into router</t>
+
+          <t>record full control information</t>
+
+          <t>support BGP extensions</t>
+        </list></t>
+
+      <t>XFB, a XML-based format for BGP routing information, meets all of the requirements above.  XML is a
+      general-purpose markup language; its primary purpose is to facilitate the sharing of data across different information systems, particularly
+      via the Internet.  We will describe an implementation of a service to collect BGP data and make it available in
+      XFB format as a BGPmon (BGP monitoring service).  Using XML as the base for our XFB markup provides the following advantages:</t>
+
+      <t><list style="symbols">
+          <t>XFB is human and machine-readable. By using CSS or XSL, XFB can
+          be easily displayed on websites. Because XFB is based on XML which is a
+          common interface to many applications, XFB can be
+          processed by a variety of existing tools.</t>
+
+          <t>XFB can easily be extended with additional information based on
+          the raw BGP routing information. The BGP data is simply annotated with additional
+	  attributes and/or elements; programs which are not looking for this new information will simply ignore
+	  it.  This allows us to easily modify XFB in general (or particular BGPmons) to allow for newly required
+	  information.  We include guidelines for adding new standard elements in each section.</t>
+
+          <t>XFB messages can be used to reconstruct the raw BGP messages, if needed.</t>
+     </list>
+
+	
+  Obviously XFB pays a storage cost since a compact binary
+      message is (usually) expanded into ASCII text with additional tags. However, the results of
+      our experiments using the default compression parameters for bzip2 on
+      XFB data are promising. For details, please refer to the <xref
+      target="app-additional">storage size comparison</xref>.</t>
+
+      <t>Currently there are two types of BGP routing information which are
+      included in XFB: BGP messages which come "over the wire" and may or may not have
+	additional "helper" information appended, and BGP control information that originates with
+	the BGPmon.</t>
+
+      <section title="Requirements Language">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in <xref
+        target="RFC2119">RFC 2119</xref>.</t>
+      </section>
+    </section>
+
+    <section anchor="review" title="XML Review">
+      <t>The syntax of XFB, being an extension of XML, is very simple. There are only three terms throughout
+      the XFB file:</t>
+
+      <t><list style="symbols">
+          <t>An "element" refers to a start tag, an end tag, and all the
+          characters in between, e.g., "&lt;example&gt;text and/or nested
+          elements&lt;/example&gt;".</t>
+
+          <t>An "empty element" combines the start tag and the end tag, e.g.,
+          "&lt;empty/&gt;".</t>
+
+          <t>An "attribute" is part of an element. If present, they occur in
+          the start tag, e.g., "&lt;example name='value'&gt;". Of course, they
+          can also appear in empty elements, e.g., "&lt;empty
+          name='value'/&gt;".</t>
+        </list></t>
+
+</section>
+
+	<section anchor="encoding" title="Encoding BGP Data">
+	<t>All &lt;bgpdata&gt; elements MUST contain the following subelements:</t>
+	<t><list style="symbols">
+	<t>A &lt;time&gt; element containing the time associated with the BGP message</t>
+	<t>A &lt;peering_session&gt; element containing information on the connection the information was received over</t>
+	<t>One or both of two elements, &lt;asciimsg&gt; and/or &lt;octets&gt;, containing the message itself</t>
+	</list></t>
+
+	<section anchor="time" title="Time">
+	<t>&lt;bgpdata&gt; messages MUST contain a &lt;time&gt; element.  This element MAY be given in either or both of two formats; additional formats MAY be included as well.  As more than one format may be given, these are expressed as subelements.</t>
+	<t><list style="symbols">
+	<t>&lt;timestamp&gt; - unix timestamp (number of seconds since midnight UTC, January 1, 1970)</t>
+	<t>&lt;human&gt; - human readable time, given as yyyy:mm:dd:hh:mm:ss</t>
+	<t>If it is desired for the time to be given more accurately, an additional &lt;precisiontime&gt; element MAY be used; if given, this element SHOULD contain the number of microseconds past the second that the message arrived.  </t>
+	</list></t>
+	<t>UNIX timestamps are recommended when it is expected that the data will be processed entirely by programs without human intervention.  Human-readable timestamps MUST contain
+	the following attributes: </t>
+	<t><list style="symbols">
+	<t>"astronomical" - this attribute has the value "r" or "a" to indicate that the timestamp is given in (r)egular or 24-hour time</t>
+	<t>"tzone" - this attribute gives the 3-letter acronym for the time zone being used</t>
+	</list></t>
+	<t>If "astronomical" is set to "r", the &lt;human&gt; element MUST have an attribute "noon" set to "am" or "pm".  The &lt;human&gt; element MAY have
+	an "offset" attribute, which is an integer between -12 and +12, giving the offset from GMT.</t>
+
+	<t>Examples of valid &lt;time&gt; elements:</t>
+	<t><list style="symbols">
+		<t>&lt;time&gt; &lt;timestamp&gt; 1216711020 &lt;/timestamp&gt; &lt;/time&gt</t>
+		<t>&lt;time&gt; &lt;timestamp&gt; 1216711020 &lt;/timestamp&gt; &lt;human astronomical="r" noon="pm" tzone="EST" offset="-5"&gt; 2008:07:22:03:17:00 &lt;/human&gt; &lt;/time&gt</t>
+	</list></t>
+	</section>
+
+	<section anchor="peering" title="Peering Session">
+	<t>XFB messages MUST contain a &lt;peering_session&gt; element.  The &lt;peering_session&gt; element MUST contain the following four subelements, which together uniquely identify the connection over which the data arrived. All numbers MUST be given in hexadecimal.</t>
+	<t><list style="symbols"><t>&lt;src_addr AFI="AFI type"&gt; - the address family identifier of the source</t>
+	<t>&lt;dst_addr AFI="AFI type"&gt; - the address family identifier of the destination</t>
+	<t>&lt;src_port&gt; - the port number of the source</t>
+	<t>&lt;dst_port&gt; - the port number of the destination</t>
+	</list></t>
+	<t>Other information can be inferred from the above elements; however, a BGPmon MAY include redundant information.  If it is desired to explicitly include the source and
+	destination AS, the following elements MAY be used.</t>
+	<t><list style="symbols">
+	<t>&lt;src_AS&gt; - the source AS</t>
+	<t>&lt;dst_AS&gt; - the destination AS</t> </list></t>
+	<t>The address elements MUST support multiple families.  Specifically, expected values for the AFI attribute are "IPv4" and "IPv6", but any BGPmon MUST allow additional families to be used as desired.</t>	
+	</section>
+
+	<section anchor="bytes" title="Representing the message">
+	<t>XBG messages MAY be sent in either of two formats, binary or ASCII.  If possible, implmentations SHOULD prefer to send BGP messages in both formats; if only one is used, they SHOULD prefer binary.</t>
+	<t><list>
+		<t>&lt;octets type="type" length="length"&gt; Message in hexadecimal &lt;/octets&gt;</t> 
+		<t>&lt;asciimsg type="type"&gt; Message in ASCII format &lt;/msg&gt;</t></list> </t>
+	<t>Binary messages contain BGP information exactly as it comes over the wire.  They take up less space than ASCII messages, can be played directly into routers, and avoid the need for conversions.  ASCII messages are human-readable and can be played into scripts.  Messages MUST be sent in at least one of these two formats.</t>
+</section>
+
+	<section title="Octets">
+		<t>Hexadecimal messages MUST have the attributes "length", giving the the length of the message in octets, and "type", giving the type of message.  There MAY be additional attributes describing the data, which is given as a hexadecimal string inside the tag.  The message type may be found as described in the ASCII section below.  Example: </t>
+			<t>&lt;octets type="update" length="4096"&gt; Message in hexadecimal &lt;/octets&gt;</t>
+	</section>
+
+	<section title="ASCII">
+		<t>The following type names are defined for the message.  There MAY be additional subelements describing the data.</t>
+
+		<t><list>
+			<t>&lt;asciimsg&gt; the main element for the message; contains the other elements described below</t>
+			<t>&lt;marker&gt; contains the message marker</t>
+			<t>&lt;length&gt; contains the original message length in octets</t>
+		</list></t>
+
+		<t>Message types 1-5 are defined in <xref target="RFC4271">RFC 4271</xref> and <xref target="RFC2918">RFC 2918</xref>; additional types MAY be 
+		handled as well.  In the event of an unrecognized type, the &lt;type&gt; element MUST contain the value "UNKNOWN".  The &lt;asciimsg&gt; tag MUST
+		 also include an attribute "type" containing the name associated with the type.</t>
+
+
+			<t><list><t>1 - OPEN</t>
+				<t>2 - UPDATE</t>
+				<t>3 - NOTIFICATION</t>
+				<t>4 - KEEPALIVE</t>
+				<t>5 - ROUTE-REFRESH</t>
+				<t>6+ - UNKNOWN</t>
+			</list></t>
+
+		<t>The rest of the elements depend on the message type.  A description of each type follows.</t>
+
+
+
+
+		<section title="The &lt;OPEN&gt; element">
+		<t>The following subelements are included in the OPEN message: &lt;version&gt;, &lt;src_AS&gt;, &lt;hold_tm&gt;, &lt;src_bgp&gt;, &lt;par_length&gt;, and 
+			&lt;opt_par&gt;; the &lt;opt_par&gt; element may be empty. </t>
+
+		<t><list>
+		<t>&lt;version&gt; the protocol version number, in decimal</t>
+		<t>&lt;src_AS&gt; the Autonomous System number of the sender</t>
+		<t>&lt;hold_tm&gt; the sender-proposed hold time, in seconds</t>
+		<t>&lt;src_bgp&gt; the BGP identifier of the sender</t>
+		<t>&lt;par_length&gt; the length of the optional parameters field in octets</t>
+		<t>&lt;opt_par&gt; contains zero or more &lt;parameter&gt; subelements giving optional parameters, as well as a "count" attribute giving the number of such 
+			parameters.</t>
+		</list></t>
+
+		<t>For each optional parameter, the &lt;opt_par&gt; element contains a &lt;parameter&gt; subelement with attribute "code" containing the integer code for the
+		parameter type.  &lt;parameter&gt; contains three subelements: a &lt;length&gt; tag giving the length of the data in octets, a &lt;type&gt; tag giving the name
+		of the parameter, and a tag whose label is the name of the parameter and which contains parameter-defined elements.  If the code is not recognized, &lt;type&gt;
+		is set to UNKNOWN and the &lt;UNKNOWN&gt; element holds unprocessed hexadecimal data.</t>
+
+
+		<t>An OPEN message might look like this: </t>
+		<t>&lt;asciimsg type="OPEN"&gt;</t>
+			<t><list>
+			<t>&lt;marker&gt;1111111111111111&lt;/marker&gt;</t>
+			<t>&lt;length&gt;int&lt;/length&gt;</t>
+			<t>&lt;OPEN&gt;</t>
+			<t><list>			
+			<t>&lt;version&gt;4&lt;/version&gt;</t>
+			<t>&lt;src_AS&gt;1234&lt;/src_AS&gt;</t>
+			<t>&lt;hold_tm&gt;4&lt;/hold_tm&gt;</t>
+			<t>&lt;src_bgp&gt;127.0.0.1&lt;/src_bgp&gt;</t>
+			<t>&lt;par_length&gt;int&lt;/par_length&gt;</t>
+			<t>&lt;opt_par count="2"&gt;</t>
+			<t><list>
+				<t>&lt;parameter code="37"&gt; <list>
+					<t>&lt;length&gt;int&lt;/length&gt;</t> 
+					<t>&lt;type&gt;AUTH&lt;/type&gt;</t>
+					<t>&lt;AUTH&gt; hexadecimal data &lt;/AUTH&gt;</t></list> </t>
+				<t>&lt;/parameter&gt;</t>
+				<t>&lt;parameter code="23"&gt;<list>
+					<t>&lt;length&gt;int&lt;/length&gt;</t> 
+					<t>&lt;type&gt;UNKNOWN&lt;/type&gt;</t>
+					<t>&lt;UNKNOWN&gt; hexadecimal data &lt;/UNKNOWN&gt;</t></list> </t>
+				<t>&lt;/parameter&gt;</t>
+			</list>	</t>
+			<t>&lt;/opt_par&gt;</t>
+			</list></t>
+			<t>&lt;/OPEN&gt;</t>
+			</list></t>
+			<t>&lt;/asciimsg&gt;</t>
+		
+		</section>
+
+
+
+
+		<section title="Defining and Processing the Parameter Value field">
+			<t>The Parameter Value field is processed differently depending on the type of parameter.  This section describes the most common parameter 
+			types.  Additional parameter types MAY be defined, and MUST confirm to the following format.  Every parameter has attribute "code" giving the 
+			integer value of its type, element &lt;length&gt; giving the length in octets of its data, and element &lt;type&gt; giving its name.  It then contains 
+			an element whose label is the name of the parameter.  This element may have attributes and subelements defined as desired; however, attributes
+			SHOULD describe the data, and the actual data SHOULD be in the form of subelements.  Parameters do not need to contain information; self-closing
+			elements are permitted.  Thus, every parameter will be in this format: </t> 
+
+			<t>&lt;parameter code="int"&gt; <list>
+					<t>&lt;length&gt; int &lt;/length&gt;</t>
+					<t>&lt;type&gt; NAME &lt;/type&gt;</t>
+					<t>&lt;NAME [optional attributes]&gt; [optional subelements or unparsed data] &lt;/NAME&gt; </t> </list></t>
+				<t>&lt;/parameter&gt;</t>
+
+  
+  			<section title="Authentication">
+  				<t>An authentication parameter is stored with type "AUTH" and additional attribute "code".  The &lt;AUTH&gt; element contains
+				hexadecimal authentication data. </t>
+	  			<t>This parameter is expressed as </t>
+				<t>&lt;parameter code="1"&gt; <list>
+					<t>&lt;length&gt; int &lt;/length&gt;</t>
+					<t>&lt;type&gt; AUTH &lt;/type&gt;</t>
+					<t>&lt;AUTH code="int"&gt; hexadecimal data &lt;/AUTH&gt; </t> </list></t>
+				<t>&lt;/parameter&gt;</t>
+  			</section>
+
+			<section title="Capabilities">
+				<t>The capabilities parameter is stored with type "CAPABILITIES" and one or more &lt;cap&gt; elements, as well as an attribute "count" giving
+				the number of such elements.  Each &lt;cap&gt; element contains &lt;code&gt;, &lt;length&gt;, and &lt;value&gt; subelements.</t>
+	  			<t>This parameter is expressed as </t>
+				<t>&lt;parameter code="2"&gt; <list>
+					<t>&lt;length&gt; int &lt;/length&gt;</t>
+					<t>&lt;type&gt; CAPABILITIES &lt;/type&gt;</t>
+					<t>&lt;CAPABILITIES count="int"&gt;  <list>
+						<t>&lt;cap&gt; <list>
+							<t>&lt;code&gt;int&lt;/code&gt;</t>
+							<t>&lt;length&gt;int&lt;/length&gt;</t>
+							<t>&lt;value&gt;hexademical data&lt;/value&gt;</t>
+						</list></t>
+						<t>&lt;/cap&gt;</t>
+					</list></t>
+					<t>&lt;/CAPABILITIES&gt;</t> </list></t>
+				<t>&lt;/parameter&gt;</t>
+  			</section>
+
+			
+		</section>
+
+
+
+		<section title="The UPDATE element">
+			<t>The following subelements are included in the UPDATE message: &lt;withdrawn_routes_len&gt;, &lt;withdrawn_routes&gt;, &lt;path_len&gt;, 
+			&lt;path_attrib&gt;, and &lt;NLRI&gt;. </t>
+
+			<t><list>
+			<t>&lt;withdrawn_routes_len&gt; the total length of the withdrawn routes field in octets</t>
+			<t>&lt;withdrawn_routes&gt; contains zero or more &lt;route&gt; subelements, each of which has attribute "mask" and contains an AFI prefix.  This
+			element has attribute "count" giving the total number of &lt;route&gt; subelements. </t>
+			<t>&lt;NLRI&gt; has a "length" attribute and contains an AFI prefix. </t>
+			<t>&lt;path_len&gt; the total length of the path attributes field in octets</t>
+			<t>&lt;path_attrib&gt; contains zero or more &lt;attribute&gt; elements and a "count" attribute giving the number of such elements.  Each &lt;attribute&gt;
+			element contains a "code" attribute and the following subelements:
+				<list>
+				<t>&lt;flags&gt; this element contains an attribute "code" giving the flag byte as an octet.  Additionally, it contains subelements for all
+				defined flags, each of which contains "YES" or "NO".  The subelements for the current flags, as defined in RFC 1771, are &lt;optional&gt;,
+				&lt;transitive&gt;, &lt;partial&gt;, and &lt;extended&gt;.</t>
+				<t>&lt;length&gt; the attribute length</t>
+				<t>&lt;type&gt; the name of the attribute type</t>
+				<t>&lt;value&gt; the value of the attribute</t>
+				<t>One additional element (the &lt;NAME&gt; element) whose name is given in the &lt;type&gt; element </t>
+				</list></t>
+
+
+			<t>The following attribute types are defined:
+			<list><t>Code 1: The &lt;type&gt; subelement has the value "ORIGIN".  This is a well-known mandatory attribute with value IGP, EGP, or INCOMPLETE.</t>
+			<t>Code 2: The &lt;type&gt; subelement has the value "AS_PATH".  This is a well-known mandatory attribute with "type" attribute set to either AS_SET or
+			AS_SEQUENCE.  It contains one or more &lt;AS&gt; subelements, each of which holds an Autonomous System number.</t>
+			<t>Code 3: The &lt;type&gt; subelement has the value "NEXT_HOP".  This is a well-known mandatory attribute that holds an AFI address as its value. </t>
+			<t>Code 4: The &lt;type&gt; subelement has the value "MULTI_EXIT_DISC".  This is an optional non-transitive attribute with integer value. </t>
+			<t>Code 5: The &lt;type&gt; subelement has the value "LOCAL_PREF".  This is a well-known discretionary attribute with integer value.</t>
+			<t>Code 6: The &lt;type&gt; subelement has the value "ATOMIC_AGGREGATE".  This is a well-known discretionary attribute with no value; the 
+			&lt;ATOMIC_AGGREGATE /&gt; tag is self-closing.</t>
+			<t>Code 7: The &lt;type&gt; subelement has the value "AGGREGATOR".  This is an optional transitive attribute containing two subelements:
+			&lt;AS&gt;, containing an AS number, and &lt;AFI&gt;, containing an AFI address. </t>
+			<t>Code 8: The &lt;type&gt; subelement has the value "COMMUNITY".  This is an optional transitive attribute containing a 32-bit integer.</t>
+			<t>Code 9: The &lt;type&gt; subelement has the value "ORIGINATOR_ID".  This is an optional non-transitive attribute containing a 32-bit integer.</t>
+			<t>Code 10: The &lt;type&gt; subelement has the value "CLUSTER_LIST".  This is an optional non-transitive attribute containing zero or more
+			&lt;ID&gt; subelements and a "count" attribute giving the number of such subelements.</t>
+			<t>Code 12: The &lt;type&gt; subelement has the value "ADVERTISER".  This is an optional non-transitive attribute containing an address.</t>
+			<t>Code 13: The &lt;type&gt; subelement has the value "RCID_PATH".  This is an optional non-transitive attribute containing zero or more &lt;RCID&gt;
+			subelements and a "count" attribute giving the number of such subelements.</t>
+			<t>Code 14: The &lt;type&gt; subelement has the value "MP_REACH_NLRI".  This is an optional non-transitive attribute that contains the following subelements:
+				 <list>
+				<t>&lt;AFI&gt; contains the name of the Address Family Identifier being used.</t>
+				<t>&lt;subs_AFI&gt; contains the Subsequent Address Family Identifier.</t>
+				<t>&lt;next_hop&gt; contains the network address of the next hop.</t>
+				<t>&lt;length&gt; contains the length of the next hop field in octets.</t>
+				<t>&lt;SNPA_list&gt; contains zero or more &lt;SNPA&gt; elements and a "count" attribute giving the total number of &lt;SNPA&gt;
+				elements it contains.  Each &lt;SNPA&gt; element has an integer-value "length" attribute and contains a SNPA.</t>
+				<t>&lt;NLRI&gt; contains one or more &lt;prefix&gt; elements and a "count" attribute giving the number of such elements.  Each &lt;prefix&gt;
+				element has a "length" attribute and contains an address prefix.</t>
+			</list></t>
+			<t>Code 15: The &lt;type&gt; subelement has the value "MP_UNREACH_NLRI".  This is an optional non-transitive attribute containing the following subelements:
+				<list>
+				<t>&lt;AFI&gt; contains the name of the Address Family Identifier being used.</t>
+				<t>&lt;subs_AFI&gt; contains the Subsequent Address Family Identifier.</t>
+				<t>&lt;NLRI&gt; contains one or more &lt;prefix&gt; elements and a "count" attribute giving the number of such elements.  Each &lt;prefix&gt;
+				element has a "length" attribute and contains an address prefix.</t>
+			</list></t>
+			<t>Code 16: The &lt;type&gt; subelement has the value "EXTENDED_COMMUNITIES".  This is an optional non-transitive attribute containing the following 
+			subelements: <list>
+				<t>&lt;flags&gt; - contains an attribute "code" giving the flag integer. Additionally, it contains subelements for all defined flags,
+				each of which contains "YES" or "NO".  The subelements for the current flags, as defined in RFC 4360, are
+				&lt;IANA&gt; and &lt;transitive&gt;.</t>
+				<t>&lt;value&gt; - contains data whose interpretation is dependent on the type of the community, as specified by the flags.</t>
+			</list></t>
+
+			<t>Code 17: The &lt;type&gt; subelement has the value "AS4_PATH".  This is an optional transitive attribute with the "type" attribute set to either AS_SET or
+			AS_SEQUENCE.  It contains one or more &lt;AS&gt; subelements, each of which holds an Autonomous System number.</t>
+
+			<t>Code 18: The &lt;type&gt; subelement has the value "AS4_AGGREGATOR".  This is an optional transitive attribute containing two subelements:
+			&lt;AS&gt;, containing an AS number, and &lt;AFI&gt;, containing an AFI address. </t>
+
+			<t>Additional attributes MAY be defined; they MUST follow the structure used above, where data is stored in the &lt;NAME&gt; element or in subelements
+			of the &lt;NAME&gt; element; in the event that the element contains one subelement that may appear a number of times, the main &lt;NAME&gt; tag should
+			include a "count" attribute.  The &lt;NAME&gt; element may have any desired attributes and
+			elements, but attributes SHOULD describe the data while elements SHOULD contain the data.  If the code value is not defined, the &lt;type&gt; subelement 
+			has the value "UNKNOWN".</t>
+			</list></t>
+
+			
+			</list></t>
+
+			<t>The UPDATE message might look like this:</t>
+			<t>&lt;asciimsg type="UPDATE"&gt;</t>
+			<t>&lt;UPDATE&gt;<list>
+				<t>&lt;withdrawn_routes_len&gt; int &lt;/withdrawn_routes_len&gt;</t>
+				<t>&lt;withdrawn_routes count="2"&gt; <list>
+					<t>&lt;route mask="int"&gt; AA.BB.CC.DD &lt;/route&gt;</t>
+					<t>&lt;route mask="int"&gt; EE.FF.GG.HH &lt;/route&gt; </t> </list></t>
+				<t>&lt;/withdrawn_routes&gt;</t>
+				<t>&lt;path_len&gt; int &lt;/path_len&gt; </t>
+				<t>&lt;path_attrib count="1"&gt; <list>
+					<t>&lt;attribute code="1"&gt; <list>
+					<t>&lt;flags code="int" &gt; <list>
+						<t>&lt;optional&gt;NO&lt;/optional&gt;</t>
+						<t>&lt;transitive&gt;YES&lt;/transitive&gt;</t>
+						<t>&lt;partial&gt;NO&lt;/partial&gt;</t>
+						<t>&lt;extended&gt;NO&lt;/extended&gt;</t> </list></t>
+					 <t>&lt;/flags&gt;</t>
+					<t>&lt;length&gt; octets &lt;/length&gt;</t>
+					<t>&lt;type&gt;ORIGIN&lt;/type&gt;</t>
+					<t>&lt;ORIGIN&gt;IGP&lt;/ORIGIN&gt;</t>
+					</list></t>
+					<t>&lt;/attribute&gt;</t>
+
+				</list></t>
+				<t>&lt;/path_attrib&gt;</t>
+				<t>&lt;NLRI length="0"&gt;&lt;/NLRI&gt;</t>
+
+
+
+			</list>
+			&lt;/UPDATE&gt; </t>
+			<t>&lt;/asciimsg&gt;</t>
+		</section>
+
+		<section title="The &lt;KEEPALIVE&gt; element">
+		<t>The &lt;KEEPALIVE&gt; element is self-closing and contains no attributes or subelements.</t>
+		<t>&lt;asciimsg type="KEEPALIVE"&gt;</t>
+			<t>&lt;KEEPALIVE /&gt;</t>
+		<t>&lt;/asciimsg&gt;</t>
+		</section>
+	
+		<section title="The &lt;NOTIFICATION&gt; element">
+		<t>The notification tag contains the following subelements: &lt;error_code&gt;, &lt;error_subcode&gt;, and &lt;data&gt;.  It also contains a "code" attribute.
+		and a "subcode" attribute, each of which have integer value.</t>
+
+		<t>The &lt;error_code&gt; element is set according to the value of the "code" attribute:
+		<list><t>Code 1: The &lt;error_code&gt; subelement has the value "Message Header Error"</t>
+		<t>Code 2: The &lt;error_code&gt; subelement has the value "OPEN Message Error"</t>
+		<t>Code 3: The &lt;error_code&gt; subelement has the value "UPDATE Message Error"</t>
+		<t>Code 4: The &lt;error_code&gt; subelement has the value "Hold Timer Expired"</t>
+		<t>Code 5: The &lt;error_code&gt; subelement has the value "Finite State Machine Error"</t>
+		<t>Code 6: The &lt;error_code&gt; subelement has the value "Cease"</t> 
+		<t>Code 7-255: The &lt;error_code&gt; subelement has the value "Undefined code: XX", where XX is the unknown integer.  The BGPmon MAY handle additional error 
+		codes.</t></list></t>
+
+		<t>The &lt;error_subcode&gt; element is set according to the value of the "subcode" attribute:
+
+		<list><t>If code=1 (Message Header Error):
+		<list><t>Subcode 1: The &lt;error_subcode&gt; subelement has the value "Connection Not Synchronized"</t>
+		<t>Subcode 2: The &lt;error_subcode&gt; subelement has the value "Bad Message Length"</t>
+		<t>Subcode 3: The &lt;error_subcode&gt; subelement has the value "Bad Message Type"</t> </list></t>
+
+		<t>If code=2 (OPEN Message Error):
+		<list><t>Subcode 1: The &lt;error_subcode&gt; subelement has the value "Unsupported Version Number"</t>
+		<t>Subcode 2: The &lt;error_subcode&gt; subelement has the value "Bad Peer AS"</t>
+		<t>Subcode 3: The &lt;error_subcode&gt; subelement has the value "Bad BGP Identifier"</t>
+		<t>Subcode 4: The &lt;error_subcode&gt; subelement has the value "Unsupported Optional Parameter"</t>
+		<t>Subcode 5: The &lt;error_subcode&gt; subelement has the value "Authentication Failure"</t>
+		<t>Subcode 6: The &lt;error_subcode&gt; subelement has the value "Unacceptable Hold Time"</t></list></t>
+
+		<t>If code=3 (UPDATE Message Error):
+		<list><t>Subcode 1: The &lt;error_subcode&gt; subelement has the value "Malformed Attribute List"</t>
+		<t>Subcode 2: The &lt;error_subcode&gt; subelement has the value "Unrecognized Well-known Attribute"</t>
+		<t>Subcode 3: The &lt;error_subcode&gt; subelement has the value "Missing Well-known Attribute"</t>
+		<t>Subcode 4: The &lt;error_subcode&gt; subelement has the value "Attribute Flags Error"</t>
+		<t>Subcode 5: The &lt;error_subcode&gt; subelement has the value "Attribute Length Error"</t>
+		<t>Subcode 6: The &lt;error_subcode&gt; subelement has the value "Invalid ORIGIN Attribute"</t>
+		<t>Subcode 7: The &lt;error_subcode&gt; subelement has the value "AS Routing Loop"</t>
+		<t>Subcode 8: The &lt;error_subcode&gt; subelement has the value "Invalid NEXT_HOP Attribute"</t>
+		<t>Subcode 9: The &lt;error_subcode&gt; subelement has the value "Optional Attribute Error"</t>
+		<t>Subcode 10: The &lt;error_subcode&gt; subelement has the value "Invalid Network Field"</t>
+		<t>Subcode 11: The &lt;error_subcode&gt; subelement has the value "Malformed AS_PATH"</t>
+		</list></t>
+
+		<t>If code=6 (Cease Error):
+		<list><t>Subcode 1: The &lt;error_subcode&gt; subelement has the value "Maximum Number of Prefixes Reached"</t>
+		<t>Subcode 2: The &lt;error_subcode&gt; subelement has the value "Administrative Shutdown"</t>
+		<t>Subcode 3: The &lt;error_subcode&gt; subelement has the value "Peer De-configured"</t>
+		<t>Subcode 4: The &lt;error_subcode&gt; subelement has the value "Administrative Reset"</t>
+		<t>Subcode 5: The &lt;error_subcode&gt; subelement has the value "Connection Rejected"</t>
+		<t>Subcode 6: The &lt;error_subcode&gt; subelement has the value "Other Configuration Change"</t>
+		<t>Subcode 7: The &lt;error_subcode&gt; subelement has the value "Connection Collision Resolution"</t>
+		<t>Subcode 8: The &lt;error_subcode&gt; subelement has the value "Out of Resources"</t>
+		</list></t>
+
+		<t>For all other codes, the &lt;error_subcode&gt; subelement has the value "Undefined error subcode".  The BGPmon MAY handle additional error subcodes.</t>
+		</list></t>
+		<t>The &lt;data&gt; subelement contains the remainder of the message, whose content depends on the error code and subcode. </t>
+		<t>The NOTIFICATION message might look like this:</t>
+		<t>&lt;asciimsg type="NOTIFICATION"&gt;</t>
+		<t>&lt;NOTIFICATION code="3" subcode="7"&gt;<list>
+			<t>&lt;error_code&gt;Bad Message Type&lt;/error_code&gt;</t>
+			<t>&lt;error_subcode&gt;AS Routing Loop&lt;/error_code&gt;</t>
+			<t>&lt;data&gt;hexadecimal&lt;/data&gt;</t> </list></t>
+		<t>&lt;/NOTIFICATION&gt;</t>
+		<t>&lt;/asciimsg&gt;</t>
+		</section>
+
+
+	</section>
+
+</section>
+
+    <!-- This PI places the pagebreak correctly (before the section title) in the text output. -->
+
+    <?rfc needLines="8" ?>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+      <t>This template was derived from an initial version written by Pekka
+      Savola and contributed by him to the xml2rfc project.</t>
+
+    </section>
+
+    <!-- Possibly a 'Contributors' section ... -->
+
+    <section anchor="IANA" title="IANA Considerations">
+      <t>This memo includes no request to IANA.</t>
+
+      <t>All drafts are required to have an IANA considerations section (see
+      <xref target="I-D.narten-iana-considerations-rfc2434bis">the update of
+      RFC 2434</xref> for a guide). If the draft does not require IANA to do
+      anything, the section contains an explicit statement that this is the
+      case (as above). If there are no requirements for IANA, the section will
+      be removed during conversion into an RFC by the RFC Editor.</t>
+    </section>
+
+    <section anchor="Security" title="Security Considerations">
+      <t>All drafts are required to have a security considerations section.
+      See <xref target="RFC3552">RFC 3552</xref> for a guide.</t>
+    </section>
+  </middle>
+
+  <!--  *****BACK MATTER ***** -->
+
+  <back>
+    <!-- References split into informative and normative -->
+
+    <!-- There are 2 ways to insert reference entries from the citation libraries:
+     1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
+     2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
+        (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+
+     Both are cited textually in the same manner: by using xref elements.
+     If you use the PI option, xml2rfc will, by default, try to find included files in the same
+     directory as the including file. You can also define the XML_LIBRARY environment variable
+     with a value containing a set of directories to search.  These can be either in the local
+     filing system or remote ones accessed by http (http://domain/dir/... ).-->
+
+    <references title="Normative References">
+      <!--?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?-->
+
+
+      &RFC2119;
+
+      &RFC4760;
+
+      &RFC4271;
+
+      &RFC2858;
+
+      &RFC2918;
+
+      &RFC1997;
+
+      &RFC4456;
+
+      &RFC1863;
+
+      &RFC2283;
+
+      &RFC4893;
+
+      &RFC1700;
+
+
+      <reference anchor="Chen">
+        <front>
+          <title>Destination Preference Attribute for BGP</title>
+
+          <author initials="E." surname="Chen">
+            <organization></organization>
+          </author>
+
+          <author initials="T." surname="Bates">
+            <organization></organization>
+
+            <address>
+              <postal>
+                <street></street>
+
+                <city></city>
+
+                <region></region>
+
+                <code></code>
+
+                <country></country>
+              </postal>
+
+              <phone></phone>
+
+              <facsimile></facsimile>
+
+              <email></email>
+
+              <uri></uri>
+            </address>
+          </author>
+
+          <date month="March" year="1996" />
+        </front>
+      </reference>
+
+      <reference anchor="Rosen">
+        <front>
+          <title>draft-ramachandra-bgp-ext-communities-00.txt</title>
+
+          <author initials="Eric" surname="Rosen">
+            <organization></organization>
+          </author>
+
+          <date month="March" year="1999" />
+        </front>
+      </reference>
+
+      <reference anchor="Nalawade">
+        <front>
+          <title>draft-kapoor-nalawade-idr-bgp-ssa-00.txt,
+          draft-nalawade-idr-mde-safi-00.txt,
+          draft-nalawade-idr-mde-safi-00.txt</title>
+
+          <author initials="Gargi" surname="Nalawade">
+            <organization></organization>
+          </author>
+
+          <date month="January" year="2004" />
+        </front>
+      </reference>
+
+      <reference anchor="min_ref">
+        <!-- the following is the minimum to make xml2rfc happy -->
+
+        <front>
+          <title>Minimal Reference</title>
+
+          <author initials="authInitials" surname="authSurName">
+            <organization></organization>
+          </author>
+
+          <date year="2006" />
+        </front>
+      </reference>
+    </references>
+
+    <references title="Informative References">
+      <!-- Here we use entities that we defined at the beginning. -->
+
+      &RFC2629;
+
+      &RFC3552;
+
+      &I-D.narten-iana-considerations-rfc2434bis;
+
+      <!-- A reference written by an organization not a person. -->
+
+    </references>
+
+    <section anchor="app-additional" title="Storage Size Comparison">
+      <t>Experiment results are promising using the default compression
+      parameters for bzip2. As shown in the table below, the uncompressed XFB
+      require more space, but the compressed XFB require less space. Compared
+      with bgpdump format, less storage will be used in compressed XFB format.
+      Even compared with MRT binary format, XFB almost consumes the same
+      storage. This table shows the size of data used in the above comparison,
+      using MRT as the baseline.</t>
+
+      <texttable>
+        <preamble></preamble>
+
+        <ttcol>format</ttcol>
+
+        <ttcol>umcompressed</ttcol>
+
+        <ttcol>ratio</ttcol>
+
+        <ttcol>compressed</ttcol>
+
+        <ttcol>ratio</ttcol>
+
+        <c>XFB</c>
+
+        <c>74389091</c>
+
+        <c>7.22</c>
+
+        <c>2200472</c>
+
+        <c>1.03</c>
+
+        <c>bgpdump</c>
+
+        <c>54466310</c>
+
+        <c>5.29</c>
+
+        <c>2418845</c>
+
+        <c>1.13</c>
+
+        <c>MRT</c>
+
+        <c>10298545</c>
+
+        <c>1.0</c>
+
+        <c>2142657</c>
+
+        <c>1.00</c>
+
+        <postamble>Storage Size Comparison</postamble>
+      </texttable>
+    </section>
+
+    <!-- Change Log
+
+v00 2006-03-15  EBD   Initial version
+
+v01 2006-04-03  EBD   Moved PI location back to position 1 -
+                      v3.1 of XMLmind is better with them at this location.
+v02 2007-03-07  AH    removed extraneous nested_list attribute,
+                      other minor corrections
+v03 2007-03-09  EBD   Added comments on null IANA sections and fixed heading capitalization.
+                      Modified comments around figure to reflect non-implementation of
+                      figure indent control.  Put in reference using anchor="DOMINATION".
+                      Fixed up the date specification comments to reflect current truth.
+v04 2007-03-09 AH     Major changes: shortened discussion of PIs,
+                      added discussion of rfc include.
+v05 2007-03-10 EBD    Added preamble to C program example to tell about ABNF and alternative 
+                      images. Removed meta-characters from comments (causes problems).  -->
+  </back>
+</rfc>
